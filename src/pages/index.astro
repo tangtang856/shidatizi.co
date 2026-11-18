@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SpotlightHero from '../components/SpotlightHero.astro';
+import DifferentiatedCards from '../components/DifferentiatedCards.astro';
+import RankingTable from '../components/RankingTable.astro';
+import NewsFeed from '../components/NewsFeed.astro';
+import { allAirports, allGuides, allGlossaries } from '../data/index.js';
+
+const title = "2026优质机场推荐与VPN梯子节点评测指南 - 性价比与稳定翻墙节点排行 - shidatizi.co";
+const description = "十代梯子 (shidatizi.co) 专注于2026优质翻墙机场推荐、VPN节点评测与高性价比梯子排行榜。涵盖IEPL专线、Shadowsocks/VLESS/Trojan协议、每GB真实单价测算与全平台客户端新手配置教程。";
+const keywords = "机场推荐, 机场节点, 性价比机场, 梯子推荐, vpn, vpn机场, vpn节点, vpn推荐, 翻墙机场, 科学上网";
+
+const faqItems = [
+  {
+    q: "2026年挑选优质翻墙机场节点，最核心的考量指标是什么？",
+    a: "挑选翻墙机场节点或VPN梯子时，最核心的指标不是商家宣传的纸面峰值带宽，而是：1. 线路类型（是否为IEPL/IPLC内网专线或优质多线BGP中转，物理上绕过GFW敏感期波动）；2. SLA可用性与晚高峰丢包率；3. 节点倍率透明度（拒绝暗扣流量套路）；4. 套餐支持周期（优先选择支持月付的服务商，规避跑路风险）。"
+  },
+  {
+    q: "传统VPN与现代机场代理协议（Shadowsocks、Trojan、VLESS）有什么区别？",
+    a: "传统商业VPN（如OpenVPN、WireGuard）主要设计初衷是企业网络加密与数据隧道，其协议流量特征明显，在国内极易受到防火墙主动探测与精准阻断；而现代翻墙机场普遍采用Shadowsocks、Trojan、VLESS等协议，具有高度伪装性（如伪装成正常HTTPS网站流量），在复杂网络环境下连接成功率与速度远超传统VPN。"
+  },
+  {
+    q: "为什么微风网络、飞V等机场能做到8元甚至4.9元超低月付？",
+    a: "微风网络 Breezenet 与飞V 专注于入门级大流量和普及型高性价比市场，通过大规模服务器带宽池集采与轻量化架构调优，将单GB流量成本大幅压缩至0.04元/GB。非常适合预算有限的学生党或作为主力梯子之外的应急备用方案。"
+  },
+  {
+    q: "如何折算机场套餐的真实每GB单价？",
+    a: "真实每GB单价 = 实际支付金额 ÷ (标称套餐流量 ÷ 常用节点平均倍率)。例如微风网络8元200GB且节点为1.0倍率，则每GB单价仅为0.04元；隐形人24元144GB纯IEPL专线，每GB单价约为0.167元。本站排行榜已统一将倍率折算计入。"
+  },
+  {
+    q: "使用ChatGPT、Claude等海外AI大模型对机场节点有什么特殊要求？",
+    a: "OpenAI与Anthropic实施了极度严格的风控策略。使用AI大模型时，要求机场节点具备纯净的住宅IP或原生机房IP，不能有频繁跳验证码、滥用拉黑记录，且DNS解析不能发生泄露。推荐使用具备专属AI解锁分流的专线机场（如隐形人、微风网络、闪跃）。"
+  },
+  {
+    q: "新手第一次使用翻墙机场，需要准备什么客户端软件？",
+    a: "根据你的操作系统选择经过开源审计的成熟客户端：Windows电脑推荐 Clash Verge Rev 或 v2rayN；安卓手机推荐 Clash Meta for Android (CMFA) 或 v2rayNG；苹果iPhone/iPad推荐在非国区App Store下载 Shadowrocket（小火箭）或 Stash；Mac苹果电脑推荐使用 Clash Verge Rev。只需将机场提供的订阅链接复制到客户端即可一键导入所有节点。"
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} schema={faqSchema}>
+  <!-- Section 1: Editorial Spotlight Hero (Feature + Live Stream) -->
+  <SpotlightHero />
+
+  <!-- Section 2: 快速答案与决策指南 -->
+  <section class="py-10 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-5 rounded-2xl bg-blue-50/50 border border-blue-100 flex flex-col justify-between">
+          <div>
+            <div class="text-2xl mb-2">🎯</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">新手小白如何起步？</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              选择有成熟文档支持、支持一键复制导入的品牌，配合 Clash Verge Rev 或小火箭，3分钟内完成配置。
+            </p>
+          </div>
+          <a href="/recommend/beginner/" class="text-xs font-bold text-blue-600 mt-3 hover:underline">查看入门专题 →</a>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <div class="text-2xl mb-2">🪙</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">如何判断是否划算？</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              计算「真实每GB成本」= 支付金额 ÷ 实际可用流量。警惕暗扣高倍率，优先选择 0.04元~0.15元/GB 梯队。
+            </p>
+          </div>
+          <a href="/ranking/value/" class="text-xs font-bold text-emerald-600 mt-3 hover:underline">查看性价比排行 →</a>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100 flex flex-col justify-between">
+          <div>
+            <div class="text-2xl mb-2">🛡️</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">晚高峰为何卡顿？</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              公网国际出口拥堵丢包严重。跨境办公、外贸视频会议或 4K 追剧，必须选用物理隔离的 IEPL/IPLC 纯专线。
+            </p>
+          </div>
+          <a href="/recommend/premium/" class="text-xs font-bold text-indigo-600 mt-3 hover:underline">查看专线专题 →</a>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50/50 border border-amber-100 flex flex-col justify-between">
+          <div>
+            <div class="text-2xl mb-2">⚠️</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">购买前避坑法则</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              坚决首选「月付」试水，拒绝任何终身会员、永久套餐；不使用公共在线订阅转换以防节点 Token 泄露。
+            </p>
+          </div>
+          <a href="/blog/cheap-airport-traps/" class="text-xs font-bold text-amber-700 mt-3 hover:underline">阅读避坑深度分析 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 差异化精选推荐卡片 -->
+  <DifferentiatedCards />
+
+  <!-- Section 4: 2026 年度翻墙机场综合权威排行榜 (14家全收录) -->
+  <RankingTable />
+
+  <!-- Section 5: 按需求与场景精准选型 -->
+  <section class="py-12 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          按不同使用场景与核心诉求精准匹配
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-2">
+          每个人对网络梯子的核心诉求各不相同。根据你的主要用途选择对应专题落地页：
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a href="/recommend/budget/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🪙</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">平价低预算</div>
+          <div class="text-[11px] text-slate-500">10元内学生党优选</div>
+        </a>
+
+        <a href="/recommend/premium/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">💎</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">高端IEPL专线</div>
+          <div class="text-[11px] text-slate-500">晚高峰零丢包</div>
+        </a>
+
+        <a href="/recommend/beginner/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🌱</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">新手小白入门</div>
+          <div class="text-[11px] text-slate-500">一键导入保姆教程</div>
+        </a>
+
+        <a href="/recommend/stable/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🛡️</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">稳定抗封锁</div>
+          <div class="text-[11px] text-slate-500">99.5%+ SLA高可用</div>
+        </a>
+
+        <a href="/recommend/ai/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">AI大模型专区</div>
+          <div class="text-[11px] text-slate-500">住宅IP不降智</div>
+        </a>
+
+        <a href="/recommend/streaming/" class="p-4 rounded-xl bg-white border border-slate-200 hover:border-blue-500 hover:shadow-md transition-all text-center group">
+          <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🎬</div>
+          <div class="font-bold text-xs sm:text-sm text-slate-900 mb-1">4K超清流媒体</div>
+          <div class="text-[11px] text-slate-500">Netflix/Disney+秒开</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: 科技资讯瀑布流 -->
+  <NewsFeed limit={9} />
+
+  <!-- Section 7: 30篇全平台教程中心速递 -->
+  <section class="py-12 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
+            <span>📚 客户端与组网手册</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+            <span>30篇保姆级指引</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            全平台翻墙客户端新手与进阶配置中心
+          </h2>
+        </div>
+        <a href="/guides/" class="text-xs sm:text-sm font-bold text-blue-600 hover:underline">
+          浏览全平台 30 篇教程手册 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href="/guides/windows/" class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/30 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="text-2xl mb-2">💻</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-blue-600 transition-colors">Windows 电脑配置</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">Clash Verge Rev 现代版、v2rayN 深度调优与 Tun 虚拟网卡游戏加速。</p>
+          </div>
+          <div class="text-xs font-semibold text-blue-600 mt-4">查看 Windows 教程 →</div>
+        </a>
+
+        <a href="/guides/android/" class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/30 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="text-2xl mb-2">📱</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-blue-600 transition-colors">Android 安卓手机</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">Clash Meta (CMFA) 分应用代理绕过微信、v2rayNG 轻量省电教程。</p>
+          </div>
+          <div class="text-xs font-semibold text-blue-600 mt-4">查看 Android 教程 →</div>
+        </a>
+
+        <a href="/guides/ios/" class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/30 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="text-2xl mb-2">🍏</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-blue-600 transition-colors">iOS 苹果设备</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">Shadowrocket 小火箭海外下载、Stash 与 Quantumult X 策略组配置。</p>
+          </div>
+          <div class="text-xs font-semibold text-blue-600 mt-4">查看 iOS 教程 →</div>
+        </a>
+
+        <a href="/guides/router-bypass/" class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/30 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="text-2xl mb-2">🌐</div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-blue-600 transition-colors">软路由与旁路网关</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">OpenWrt PassWall / OpenClash 安装，全屋电视、Switch免客户端翻墙。</p>
+          </div>
+          <div class="text-xs font-semibold text-blue-600 mt-4">查看路由器教程 →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: 常见问题解答 (FAQ) -->
+  <section class="py-12 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          常见问题解答 (FAQ)
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-2">
+          针对翻墙机场选型、专线协议、单价核算与客户端使用的核心疑问解答：
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqItems.map((item) => (
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <h3 class="font-bold text-sm sm:text-base text-slate-900 mb-2 flex items-start gap-2">
+              <span class="text-blue-600 font-black">Q:</span>
+              <span>{item.q}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-5">
+              {item.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

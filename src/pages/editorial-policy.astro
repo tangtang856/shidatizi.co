@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="编辑政策与评测标准 - shidatizi.co 独立测试方法论"
+  description="了解 shidatizi.co 的编辑政策、测试方法论与评分标准。我们公开测速网络环境、SLA可用率统计模型与商业透明度声明。"
+  keywords="编辑政策, 评测标准, 测速方法论, 独立评测, 评分规则"
+  breadcrumbs={[{ name: "编辑与评测政策" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm mb-8">
+        <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 mb-3 inline-block">
+          十代梯子 · 规范标准
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-6">
+          编辑政策与评测标准
+        </h1>
+
+        <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
+          <p>
+            为确保 <strong>shidatizi.co</strong> 所有评测文章、横向比较以及排行榜的公信力与权威性，我们制定了本《编辑政策与评测标准》。
+          </p>
+
+          <h2 class="text-xl font-bold text-slate-900 pt-4">一、数据采集与实测环境</h2>
+          <p>所有参与评测的机场节点均在以下标准化基准环境中运行：</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li><strong>物理接入基准：</strong>统一基于华东地区电信 1000M / 联通 1000M 典型家庭光纤宽带；</li>
+            <li><strong>测速时间窗口：</strong>重点采集晚高峰 20:00 至 23:00（公网国际出口最易发生丢包拥塞的时段）的网络表现；</li>
+            <li><strong>测试指标：</strong>覆盖 TCP Ping 握手延迟、抖动（Jitter）、丢包率（Packet Loss %）以及 Fast.com / YouTube 4K 峰值下行速率。</li>
+          </ul>
+
+          <h2 class="text-xl font-bold text-slate-900 pt-4">二、单GB成本计算公式</h2>
+          <p>
+            我们反对盲目对比月付绝对标价。性价比计算统一采用公开透明的单位算式：
+          </p>
+          <div class="p-4 bg-slate-50 rounded-xl font-mono text-xs sm:text-sm text-slate-800 border border-slate-200">
+            折算每GB成本 = 套餐实际月费 / 标称月度可用GB配额
+          </div>
+          <p>
+            对于含有“高倍率节点”或流量结转限制的服务商，在评分体系中将酌情扣除其性价比综合权重。
+          </p>
+
+          <h2 class="text-xl font-bold text-slate-900 pt-4">三、商业推广与Affiliate透明度</h2>
+          <p>
+            本站部分文章包含推荐链接（Affiliate Referral）。当您通过这些链接订购服务时，我们可能会获得小额返利佣金以支持本站服务器维护和自费购买评测套餐的开销。
+          </p>
+          <p>
+            但我们在此郑重承诺：<strong>商业返利绝不会影响技术性能的客观测试结论与排名顺序</strong>。任何在晚高峰出现大面积断流或跑路失联的服务商，均会被如实记录、降权或下架。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

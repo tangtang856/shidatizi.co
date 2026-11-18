@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allGlossaries } from '../../data/index.js';
+---
+
+<BaseLayout
+  title="科学上网术语百科词典 - IPLC/IEPL/BGP/分流规则知识库 - shidatizi.co"
+  description="通俗易懂解读翻墙与科学上网专业术语：深入解析IPLC与IEPL物理专线区别、节点倍率陷阱、BGP中转原理、GEOIP分流规则以及DNS污染防御机制。"
+  keywords="翻墙术语, IPLC定义, IEPL专线, 节点倍率, BGP中转, 科学上网百科, 翻墙词典"
+  breadcrumbs={[{ name: "术语百科" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Title -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 mb-3">
+          📖 知识百科 · 通俗易懂
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          科学上网网络技术术语百科
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          购买机场和配置客户端时，不再被专业术语绕晕。用最通俗易懂的语言，彻底搞懂底层物理网络与分流原理。
+        </p>
+      </div>
+
+      <!-- Glossaries List -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+        {allGlossaries.map(g => (
+          <a
+            href={`/glossary/${g.slug}/`}
+            class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between hover:shadow-lg hover:border-blue-400 transition-all group"
+          >
+            <div>
+              <div class="text-xs font-bold text-indigo-600 mb-2">术语释义 #{g.slug}</div>
+              <h2 class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition-colors mb-3">
+                {g.h1}
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3 mb-4">
+                {g.metaDesc}
+              </p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 group-hover:translate-x-1 transition-transform">
+              阅读完整词条解析 &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

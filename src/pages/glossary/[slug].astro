@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allGlossaries, allAirports } from '../../data/index.js';
+
+export function getStaticPaths() {
+  return allGlossaries.map(term => ({
+    params: { slug: term.slug },
+    props: { term }
+  }));
+}
+
+const { term } = Astro.props;
+
+const cleanBody = (term.body || '')
+  .replace(/\.\.\/\.\.\/([a-zA-Z0-9_\-\/]+)\/index\.html/g, '/$1/')
+  .replace(/\.\.\/([a-zA-Z0-9_\-\/]+)\/index\.html/g, '/$1/');
+
+const otherGlossaries = allGlossaries.filter(g => g.slug !== term.slug);
+---
+
+<BaseLayout
+  title={term.title}
+  description={term.metaDesc}
+  keywords={term.keywords}
+  breadcrumbs={[
+    { name: "翻墙知识百科", href: "/glossary/" },
+    { name: term.h1 }
+  ]}
+>
+  <div class="py-10 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Card -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm mb-8">
+        <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 mb-3 inline-block">
+          📖 翻墙网络术语百科
+        </span>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-snug mb-3">
+          {term.h1}
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+          {term.metaDesc}
+        </p>
+      </div>
+
+      <!-- Main Body -->
+      <article class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm mb-8 prose prose-slate max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-a:text-blue-600 hover:prose-a:underline prose-code:text-blue-600 prose-code:bg-blue-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded">
+        <div set:html={cleanBody} />
+      </article>
+
+      <!-- Other Glossary Terms -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
+        <h3 class="text-base font-black text-slate-900 mb-4">
+          📚 查阅其他核心网络术语
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {otherGlossaries.map(og => (
+            <a
+              href={`/glossary/${og.slug}/`}
+              class="p-3.5 rounded-xl bg-slate-50 hover:bg-blue-50/60 border border-slate-100 hover:border-blue-200 transition-all font-bold text-xs sm:text-sm text-slate-800 hover:text-blue-600 flex items-center justify-between"
+            >
+              <span>{og.h1}</span>
+              <span class="text-slate-400">&rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="text-center">
+        <a href="/glossary/" class="text-xs sm:text-sm font-bold text-blue-600 hover:underline">
+          &larr; 返回术语百科词典总览
+        </a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

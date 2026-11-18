@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="联系我们 - shidatizi.co 官方联络与商务合作通道"
+  description="联系 shidatizi.co 团队。我们接受读者技术咨询、文章勘误反馈、机场服务商入库资料核验与技术合作沟通。"
+  keywords="联系十代梯子, 机场收录申请, 网站反馈, 商务合作"
+  breadcrumbs={[{ name: "联系我们" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm mb-8">
+        <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 mb-3 inline-block">
+          十代梯子 · 官方沟通通道
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+          联系我们
+        </h1>
+        <p class="text-sm text-slate-500 mb-8 leading-relaxed">
+          无论是读者关于客户端配置的疑问，还是机场运营方申请数据资料更新与纠错，我们都非常欢迎您的联络。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">读者技术反馈与勘误</div>
+            <p class="text-xs text-slate-600 mb-4">
+              如发现文章中的技术参数、套餐价格变动或教程过时失效，请发送邮件说明具体页面与修正建议。
+            </p>
+            <div class="text-sm font-bold text-blue-600 font-mono">
+              contact@shidatizi.co
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">服务商入驻与数据更新</div>
+            <p class="text-xs text-slate-600 mb-4">
+              已收录服务商如调整了节点线路（如升级全IEPL专线）或新增优惠码，请提交官方凭证申请复核。
+            </p>
+            <div class="text-sm font-bold text-blue-600 font-mono">
+              bd@shidatizi.co
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm leading-relaxed">
+          <strong class="font-bold block mb-1">⚠️ 联络准则提醒：</strong>
+          我们坚守独立客观的技术评测标准。对于要求付费篡改实测丢包数据、强行干预排行榜客观排名的商业合作，我们一律予以拒绝。感谢您的理解与支持。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

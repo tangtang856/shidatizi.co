@@ -1,0 +1,168 @@
+---
+import { getRankedAirports } from '../data/index.js';
+
+interface Props {
+  criteria?: "overall" | "value" | "budget" | "stable";
+  title?: string;
+  subtitle?: string;
+  showAll?: boolean;
+}
+
+const {
+  criteria = "overall",
+  title = "2026 年度翻墙机场综合权威排行榜（全收录 14 家）",
+  subtitle = "基于物理专线架构、测算单价、晚高峰SLA与协议适配多维度核算，点击直达官网选购或查阅深度评测：",
+  showAll = true
+} = Astro.props;
+
+const airports = getRankedAirports(criteria);
+---
+
+<section class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">
+        <span>🏆 官方综合权威榜单</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+        <span>客观数据核验</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+        {title}
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+      <table class="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+        <thead class="bg-slate-50 text-slate-700 font-bold">
+          <tr>
+            <th scope="col" class="py-3.5 px-3 sm:px-4 text-center w-14">排名</th>
+            <th scope="col" class="py-3.5 px-4">品牌与优惠码</th>
+            <th scope="col" class="py-3.5 px-4">线路架构</th>
+            <th scope="col" class="py-3.5 px-4">起步价格 / 月配额</th>
+            <th scope="col" class="py-3.5 px-4">折算每GB</th>
+            <th scope="col" class="py-3.5 px-4">SLA可用性</th>
+            <th scope="col" class="py-3.5 px-4 hidden md:table-cell">适合定位</th>
+            <th scope="col" class="py-3.5 px-4 text-center">官网直达 / 评测</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 font-normal text-slate-800">
+          {airports.map((a, idx) => {
+            const rank = idx + 1;
+            return (
+              <tr class="hover:bg-blue-50/40 transition-colors">
+                <!-- Rank Badge -->
+                <td class="py-3.5 px-3 sm:px-4 text-center whitespace-nowrap">
+                  {rank === 1 && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-amber-500 text-slate-950 font-black text-xs shadow-sm shadow-amber-500/20">
+                      1
+                    </span>
+                  )}
+                  {rank === 2 && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-tr from-slate-300 to-slate-400 text-slate-950 font-black text-xs shadow-sm">
+                      2
+                    </span>
+                  )}
+                  {rank === 3 && (
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-tr from-amber-700 to-amber-600 text-white font-black text-xs shadow-sm">
+                      3
+                    </span>
+                  )}
+                  {rank > 3 && (
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs">
+                      {rank}
+                    </span>
+                  )}
+                </td>
+
+                <!-- Brand & Coupon -->
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                    <span>{a.name}</span>
+                  </div>
+                  {a.coupon && (
+                    <div class="text-[11px] text-amber-700 font-semibold mt-0.5">
+                      券: <code class="bg-amber-50 border border-amber-200 px-1 py-0.2 rounded font-mono text-amber-800">{a.coupon}</code>
+                    </div>
+                  )}
+                </td>
+
+                <!-- Line Type -->
+                <td class="py-3.5 px-4 whitespace-nowrap text-xs text-slate-600">
+                  <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
+                    {a.lineType}
+                  </span>
+                </td>
+
+                <!-- Price & Quota -->
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <div class="font-bold text-slate-900">
+                    ¥{a.startingPrice} <span class="text-xs font-normal text-slate-500">/ {a.billingCycle}</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400">
+                    {a.plans[0].bandwidthGB} GB
+                  </div>
+                </td>
+
+                <!-- Per GB -->
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="font-black text-blue-600 text-xs sm:text-sm">
+                    ¥{a.plans[0].pricePerGB}
+                  </span>
+                  <span class="text-[10px] text-slate-400">/GB</span>
+                </td>
+
+                <!-- SLA -->
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="font-bold text-emerald-600 text-xs">
+                    {a.sla}
+                  </span>
+                </td>
+
+                <!-- Suitable For -->
+                <td class="py-3.5 px-4 text-xs text-slate-500 max-w-[200px] truncate hidden md:table-cell">
+                  {a.suitableFor[0]}
+                </td>
+
+                <!-- Actions -->
+                <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                  <div class="inline-flex items-center gap-1.5">
+                    <a
+                      href={a.affiliateUrl || a.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="px-2.5 py-1 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-sm transition-colors"
+                    >
+                      直达 🚀
+                    </a>
+                    <a
+                      href={`/review/${a.slug}/`}
+                      class="px-2.5 py-1 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors"
+                    >
+                      评测
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Bottom Note -->
+    <div class="mt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+      <div>
+        <span>* 注：所有价格均包含优惠码折算，排名严格依据真实抽样SLA可用性、每GB单价与晚高峰综合测算。</span>
+      </div>
+      <div>
+        <a href="/ranking/overall/" class="font-bold text-blue-600 hover:underline">
+          查看完整综合排行榜与评分细则 →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

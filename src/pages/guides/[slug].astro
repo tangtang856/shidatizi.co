@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allGuides, allAirports } from '../../data/index.js';
+
+export function getStaticPaths() {
+  return allGuides.map(guide => ({
+    params: { slug: guide.slug },
+    props: { guide }
+  }));
+}
+
+const { guide } = Astro.props;
+
+// Clean up any legacy relative html links to modern clean URLs
+const cleanBody = guide.body
+  .replace(/\.\.\/\.\.\/([a-zA-Z0-9_\-\/]+)\/index\.html/g, '/$1/')
+  .replace(/\.\.\/([a-zA-Z0-9_\-\/]+)\/index\.html/g, '/$1/');
+
+// Related guides (same category or next ones)
+const relatedGuides = allGuides
+  .filter(g => g.slug !== guide.slug)
+  .slice(0, 4);
+
+// Top 3 airports to recommend alongside guides
+const recommendedAirports = allAirports.slice(0, 3);
+
+const guideSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": guide.h1,
+  "description": guide.metaDesc,
+  "datePublished": guide.date || "2026-03-01",
+  "dateModified": guide.date || "2026-03-01",
+  "author": {
+    "@type": "Organization",
+    "name": "十代梯子技术研究中心"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "十代梯子 · shidatizi.co"
+  }
+};
+---
+
+<BaseLayout
+  title={guide.title}
+  description={guide.metaDesc}
+  keywords={guide.keywords}
+  breadcrumbs={[
+    { name: "教程中心", href: "/guides/" },
+    { name: guide.h1 }
+  ]}
+  schema={guideSchema}
+>
+  <div class="py-10 bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Article Header -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm mb-8">
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-3">
+          <span class="px-2.5 py-1 rounded-full font-bold bg-blue-100 text-blue-700">
+            {guide.category || '客户端教程'}
+          </span>
+          <span>📅 最后更新：{guide.date || '2026-03-01'}</span>
+          <span>⏱️ 阅读时间：{guide.readTime || '8 分钟'}</span>
+          <span class="text-emerald-600 font-bold">✓ 编辑审计通过</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-snug mb-4">
+          {guide.h1}
+        </h1>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+          <strong>导读摘要：</strong>{guide.metaDesc}
+        </div>
+      </div>
+
+      <!-- Quick Recommended Airport Bar in Guides -->
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-4 sm:p-5 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-blue-700 uppercase tracking-wider block mb-0.5">💡 准备开始前</span>
+          <div class="text-xs sm:text-sm font-bold text-slate-900">尚无可用翻墙节点？优先搭配经过我们严测的高性价比专线机场：</div>
+        </div>
+        <div class="flex flex-wrap gap-2 shrink-0">
+          {recommendedAirports.map(a => (
+            <a
+              href={a.affiliateUrl || a.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-600 border border-blue-200 hover:bg-blue-600 hover:text-white transition-all shadow-xs"
+            >
+              {a.name} (¥{a.startingPrice}/月) 🚀
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Guide Content Body -->
+      <article class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm mb-8 prose prose-slate max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-a:text-blue-600 hover:prose-a:underline prose-code:text-blue-600 prose-code:bg-blue-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:rounded-2xl">
+        <div set:html={cleanBody} />
+      </article>
+
+      <!-- Related Guides -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
+        <h3 class="text-lg font-black text-slate-900 mb-4">
+          📚 相关平台与进阶教程推荐
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {relatedGuides.map(rg => (
+            <a
+              href={`/guides/${rg.slug}/`}
+              class="p-4 rounded-xl bg-slate-50 hover:bg-blue-50/60 border border-slate-100 hover:border-blue-200 transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <span class="text-[11px] font-bold text-blue-600 mb-1 block">{rg.category}</span>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  {rg.h1}
+                </h4>
+              </div>
+              <span class="text-[11px] text-slate-400 mt-2 block">阅读耗时 {rg.readTime || '6 分钟'} &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="text-center">
+        <a href="/guides/" class="text-xs sm:text-sm font-bold text-blue-600 hover:underline">
+          &larr; 返回教程中心查看全部 30 篇完整指南
+        </a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

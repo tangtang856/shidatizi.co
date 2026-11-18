@@ -1,0 +1,119 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+
+const navLinks = [
+  { name: "首页", href: "/" },
+  { name: "机场推荐", href: "/recommend/budget/" },
+  { name: "综合排行", href: "/ranking/overall/" },
+  { name: "机场评测", href: "/review/breezenet/" },
+  { name: "在线对比", href: "/compare/" },
+  { name: "教程中心", href: "/guides/" },
+  { name: "深度博客", href: "/blog/" },
+];
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-200/80 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+          <span class="text-xl">⚡</span>
+        </div>
+        <div>
+          <div class="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+            十代梯子
+          </div>
+          <div class="text-[10px] tracking-wider font-semibold text-slate-400 uppercase -mt-1">
+            shidatizi.co
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        {navLinks.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                isActive
+                  ? "bg-blue-50 text-blue-600 shadow-sm shadow-blue-500/10"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden sm:flex items-center gap-2.5">
+        <a
+          href="/compare/"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/70 transition-colors"
+        >
+          <span>⚖️</span>
+          <span>参数对比</span>
+        </a>
+        <a
+          href="/ranking/overall/"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/25 transition-all"
+        >
+          <span>🏆</span>
+          <span>2026综合榜</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex md:hidden">
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+          aria-label="切换菜单"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 px-4 pt-2 pb-4 space-y-1">
+    {navLinks.map((item) => (
+      <a
+        href={item.href}
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+      >
+        {item.name}
+      </a>
+    ))}
+    <div class="pt-3 border-t border-slate-100 flex gap-2">
+      <a href="/compare/" class="flex-1 text-center py-2 text-xs font-bold bg-slate-100 text-slate-700 rounded-lg">
+        ⚖️ 在线对比
+      </a>
+      <a href="/ranking/overall/" class="flex-1 text-center py-2 text-xs font-bold bg-blue-600 text-white rounded-lg">
+        🏆 综合榜单
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

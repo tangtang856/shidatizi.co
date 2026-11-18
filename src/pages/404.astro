@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - 页面未找到 - shidatizi.co"
+  description="抱歉，您访问的页面不存在或已被移除。请返回首页或查阅我们的机场推荐、排行榜与使用教程。"
+  breadcrumbs={[{ name: "404 未找到" }]}
+>
+  <div class="py-20 bg-slate-50 min-h-[70vh] flex items-center justify-center">
+    <div class="max-w-lg mx-auto px-4 text-center">
+      <div class="text-7xl font-black text-blue-600 mb-4 tracking-tighter">404</div>
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+        抱歉，该页面无法访问
+      </h1>
+      <p class="text-sm text-slate-500 leading-relaxed mb-8">
+        您所请求的链接可能已失效、被重定向或已迁移至最新技术架构。请尝试通过以下推荐入口继续浏览：
+      </p>
+
+      <div class="grid grid-cols-2 gap-3 mb-8 text-xs font-bold">
+        <a
+          href="/"
+          class="p-3.5 rounded-xl bg-blue-600 text-white hover:bg-blue-700 shadow-md transition-all"
+        >
+          返回网站首页
+        </a>
+        <a
+          href="/ranking/overall/"
+          class="p-3.5 rounded-xl bg-white text-slate-800 border border-slate-200 hover:bg-slate-100 transition-all"
+        >
+          查阅综合排行榜
+        </a>
+        <a
+          href="/recommend/budget/"
+          class="p-3.5 rounded-xl bg-white text-slate-800 border border-slate-200 hover:bg-slate-100 transition-all"
+        >
+          便宜低预算推荐
+        </a>
+        <a
+          href="/guides/"
+          class="p-3.5 rounded-xl bg-white text-slate-800 border border-slate-200 hover:bg-slate-100 transition-all"
+        >
+          客户端使用教程
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

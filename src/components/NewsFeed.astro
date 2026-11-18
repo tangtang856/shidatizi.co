@@ -1,0 +1,69 @@
+---
+import { allBlogs } from '../data/index.js';
+
+interface Props {
+  limit?: number;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  limit = 9,
+  title = "科技资讯瀑布流 · 最新技术分析与出海深度专栏",
+  subtitle = "拒绝千篇一律的商业吹捧，真实剖析每个品牌的实际优劣势与适配人群："
+} = Astro.props;
+
+const featuredBlogs = allBlogs.slice(0, limit);
+---
+
+<section class="py-12 bg-slate-50 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
+          <span>📝 科技媒体专栏</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+          <span>100篇深度原创</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          {title}
+        </h2>
+      </div>
+      <a href="/blog/" class="text-xs sm:text-sm font-bold text-blue-600 hover:underline">
+        查阅全部 100 篇深度专栏 →
+      </a>
+    </div>
+
+    <!-- Waterfall Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuredBlogs.map((b) => (
+        <article class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2.5">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-50 text-blue-700">
+                {b.category || "技术博文"}
+              </span>
+              <span>{b.date} · {b.readTime || "8分钟"}</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-2 leading-snug">
+              <a href={`/blog/${b.slug}/`}>
+                {b.h1}
+              </a>
+            </h3>
+            <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4">
+              {b.metaDesc}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] text-slate-400">十代梯子技术组</span>
+            <a href={`/blog/${b.slug}/`} class="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+              <span>阅读全文</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

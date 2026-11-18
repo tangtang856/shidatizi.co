@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allBlogs } from '../../data/index.js';
+
+const categories = [
+  '全部',
+  '协议底层',
+  '选型避坑',
+  '出海应用',
+  '网络安全',
+  '进阶与开发',
+  '电视/主机',
+  '行业内幕',
+  '疑难排错',
+  '综合指南'
+];
+
+// Spotlight top 3 articles
+const featuredBlogs = allBlogs.slice(0, 3);
+const restBlogs = allBlogs.slice(3);
+---
+
+<BaseLayout
+  title="科学上网技术博客与资讯专栏 - 100篇协议/测评/避坑指南深度长文 - shidatizi.co"
+  description="十代梯子技术研究博客。收录100篇深度原创技术文章，涵盖Shadowsocks与Hysteria2协议剖析、机场选型防坑避雷、ChatGPT原生解锁原理与海外流媒体合租全攻略。"
+  keywords="翻墙博客, 梯子资讯, 机场测评文章, 科学上网博客, 协议分析, 避坑指南, 节点测速"
+  breadcrumbs={[{ name: "深度资讯文章" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Title -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 mb-3">
+          📚 100 篇原创技术长文全收录
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          网络出海与梯子技术深度研报专栏
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          深入拆解内网专线物理拓扑、加密协议性能开销、跨境流媒体与AI工具风控策略，帮助您建立清晰理性的技术认知。
+        </p>
+      </div>
+
+      <!-- Featured Spotlight (Top 3) -->
+      <div class="mb-12">
+        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+          <span>🔥</span> 本周编辑精选研报
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featuredBlogs.map(fb => (
+            <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-xl hover:border-blue-400 transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">
+                    {fb.category}
+                  </span>
+                  <span class="text-[11px] text-slate-400">⏱️ {fb.readTime || '6 分钟'}</span>
+                </div>
+                <h2 class="text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-snug">
+                  <a href={`/blog/${fb.slug}/`}>
+                    {fb.h1}
+                  </a>
+                </h2>
+                <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed mb-4">
+                  {fb.metaDesc}
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] text-slate-400">📅 {fb.date || '2026-03-01'}</span>
+                <a href={`/blog/${fb.slug}/`} class="text-xs font-bold text-blue-600 group-hover:underline">
+                  阅读全文 &rarr;
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="cat-tabs">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-cat={cat}
+            class={`cat-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
+              idx === 0
+                ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Remaining Articles Grid (97 items) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="blog-grid">
+        {restBlogs.map((b) => (
+          <div
+            data-category={b.category}
+            class="blog-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-lg hover:border-blue-300 transition-all group"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors">
+                  {b.category}
+                </span>
+                <span class="text-[11px] text-slate-400">⏱️ {b.readTime || '5 分钟'}</span>
+              </div>
+              <h3 class="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-snug">
+                <a href={`/blog/${b.slug}/`}>
+                  {b.h1}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                {b.metaDesc}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] text-slate-400">📅 {b.date || '2026-03-01'}</span>
+              <a href={`/blog/${b.slug}/`} class="text-xs font-bold text-blue-600 group-hover:translate-x-0.5 transition-transform">
+                阅读研报 &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+
+  <script is:inline>
+    const tabs = document.querySelectorAll('.cat-tab');
+    const cards = document.querySelectorAll('.blog-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const cat = tab.getAttribute('data-cat');
+        
+        // update tab styles
+        tabs.forEach(t => {
+          if (t === tab) {
+            t.className = 'cat-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all bg-blue-600 text-white border-blue-600 shadow-sm';
+          } else {
+            t.className = 'cat-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all bg-white text-slate-700 border-slate-200 hover:bg-slate-100';
+          }
+        });
+
+        // filter cards
+        cards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (cat === '全部' || cardCat === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>

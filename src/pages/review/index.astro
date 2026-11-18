@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allAirports } from '../../data/index.js';
+---
+
+<BaseLayout
+  title="2026 翻墙机场独立深度评测中心 - 14家梯子节点真实测速全收录 - shidatizi.co"
+  description="客观呈现14家翻墙机场独立评测：涵盖微风网络、暮光网络、飞猫云、无忧、灵猫、隐形人、闪跃等服务商的节点延迟、晚高峰丢包、套餐资费与ChatGPT/流媒体解锁测试。"
+  keywords="机场评测, 梯子评测, 翻墙测评, 机场测速, 专线评测, 节点评测, 翻墙指南"
+  breadcrumbs={[{ name: "机场评测中心" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Title -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 mb-3">
+          🔬 独立实验 · 严谨数据
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          2026 翻墙机场独立深度评测中心
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          收录本站已实测核验的 14 家翻墙梯子品牌。每篇评测均涵盖网络拓扑、晚高峰测速、单GB测算成本、流媒体与AI工具解锁实录。
+        </p>
+      </div>
+
+      <!-- Airport Reviews Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {allAirports.map((airport) => (
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-xl hover:border-blue-400 transition-all group">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">
+                  实测评分 ★ {airport.overallScore || 9.5}
+                </span>
+                <span class="text-xs font-mono text-slate-400">
+                  {airport.lineType}
+                </span>
+              </div>
+
+              <h2 class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition-colors mb-2">
+                <a href={`/review/${airport.slug}/`}>
+                  {airport.name}
+                </a>
+              </h2>
+
+              <p class="text-xs sm:text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                {airport.description}
+              </p>
+
+              <div class="grid grid-cols-2 gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs mb-4">
+                <div>
+                  <span class="text-slate-400 block text-[11px]">起步资费</span>
+                  <span class="font-bold text-blue-600">¥{airport.startingPrice}/{airport.billingCycle || '月'}</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[11px]">SLA 可用率</span>
+                  <span class="font-bold text-emerald-600">{airport.sla}</span>
+                </div>
+              </div>
+
+              {airport.coupon && (
+                <div class="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-lg mb-4 flex items-center justify-between">
+                  <span>专属券码: <code>{airport.coupon}</code></span>
+                  <span class="text-[10px] text-amber-600">结账立减</span>
+                </div>
+              )}
+            </div>
+
+            <div class="flex items-center gap-2 pt-4 border-t border-slate-100">
+              <a
+                href={`/review/${airport.slug}/`}
+                class="flex-1 text-center py-2.5 px-3 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+              >
+                查看深度评测
+              </a>
+              <a
+                href={airport.affiliateUrl || airport.officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 text-center py-2.5 px-3 rounded-xl font-bold text-xs bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-colors"
+              >
+                官网直达 🚀
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

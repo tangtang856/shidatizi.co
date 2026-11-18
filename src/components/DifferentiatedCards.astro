@@ -1,0 +1,357 @@
+---
+import { getAirportBySlug } from '../data/index.js';
+
+const breezenet = getAirportBySlug('breezenet');
+const invisible = getAirportBySlug('invisible');
+const flycat = getAirportBySlug('flycat');
+const wuyou = getAirportBySlug('wuyou');
+const flashleap = getAirportBySlug('flashleap');
+---
+
+<section class="py-12 bg-slate-100/60 border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
+          <span>🎯 精准场景推荐</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+          <span>差异化特性匹配</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          2026 精选梯子节点核心矩阵（差异化旗舰精选）
+        </h2>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-500 max-w-md">
+        拒绝同质化复制。每个服务商在专线类型、单价折算与解锁能力上各有千秋，根据您的核心诉求对号入座：
+      </p>
+    </div>
+
+    <!-- Differentiated Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: 性价比之王 (Breezenet) - Wide & Prominent -->
+      {breezenet && (
+        <div class="bg-white rounded-2xl border-2 border-blue-500/40 p-6 shadow-md hover:shadow-xl transition-all relative flex flex-col justify-between group">
+          <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            🏆 性价比天花板
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg">
+                {breezenet.lineType}
+              </span>
+              <span class="text-xs font-bold text-slate-600">★ 实测 9.8 分</span>
+            </div>
+
+            <h3 class="text-xl font-black text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
+              {breezenet.name}
+            </h3>
+            <p class="text-xs text-slate-500 mb-4 line-clamp-2">
+              {breezenet.tagline}
+            </p>
+
+            <div class="bg-blue-50/60 rounded-xl p-3 border border-blue-100 flex items-center justify-between mb-4">
+              <div>
+                <span class="text-2xl font-black text-blue-700">¥{breezenet.startingPrice}</span>
+                <span class="text-xs text-slate-500">/ 月起</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-slate-700 block">{breezenet.plans[0].bandwidthGB} GB / 月</span>
+                <span class="text-[11px] text-blue-600 font-extrabold">低至 ¥{breezenet.plans[0].pricePerGB}/GB</span>
+              </div>
+            </div>
+
+            {breezenet.coupon && (
+              <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200/80 px-2.5 py-1.5 rounded-lg mb-4 font-semibold flex items-center justify-between">
+                <span>专属券码：<code class="bg-white px-1.5 py-0.5 rounded font-bold text-amber-700">{breezenet.coupon}</code></span>
+                <span class="text-[11px] text-amber-600">立减福利</span>
+              </div>
+            )}
+
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>IEPL/IPLC 物理专线，高峰不卡顿</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>全面支持先进 VLESS 协议，防探测强</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 border-t border-slate-100">
+            <a href={breezenet.affiliateUrl || breezenet.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="flex-1 text-center py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-colors">
+              官网直达选购 🚀
+            </a>
+            <a href={`/review/${breezenet.slug}/`} class="py-2 px-3 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              评测
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Card 2: 企业级纯专线 (Invisible 隐形人) - Dark/Indigo Accented -->
+      {invisible && (
+        <div class="bg-gradient-to-b from-slate-900 to-indigo-950 text-white rounded-2xl border-2 border-indigo-500/50 p-6 shadow-xl hover:shadow-2xl transition-all relative flex flex-col justify-between group">
+          <div class="absolute -top-3 right-6 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-950 text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            💎 纯IEPL专线标杆
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-indigo-300 bg-indigo-900/60 border border-indigo-700/60 px-2.5 py-1 rounded-lg">
+                IEPL纯专线 · 晚高峰零丢包
+              </span>
+              <span class="text-xs font-bold text-emerald-400">SLA 99.9%</span>
+            </div>
+
+            <h3 class="text-xl font-black text-white group-hover:text-indigo-300 transition-colors mb-1">
+              {invisible.name}
+            </h3>
+            <p class="text-xs text-slate-300 mb-4 line-clamp-2">
+              {invisible.tagline}
+            </p>
+
+            <div class="bg-indigo-900/40 rounded-xl p-3 border border-indigo-800/60 flex items-center justify-between mb-4">
+              <div>
+                <span class="text-2xl font-black text-white">¥{invisible.startingPrice}</span>
+                <span class="text-xs text-indigo-200">/ 月付</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-slate-200 block">{invisible.plans[0].bandwidthGB} GB 大配额</span>
+                <span class="text-[11px] text-cyan-300 font-extrabold">全节点解锁 AI 与 4K</span>
+              </div>
+            </div>
+
+            {invisible.coupon && (
+              <div class="text-xs bg-indigo-900/60 text-amber-300 border border-amber-400/30 px-2.5 py-1.5 rounded-lg mb-4 font-semibold flex items-center justify-between">
+                <span>专属券码：<code class="bg-slate-900 px-1.5 py-0.5 rounded font-bold text-amber-200">{invisible.coupon}</code></span>
+                <span class="text-[11px] text-amber-400">立减折上折</span>
+              </div>
+            )}
+
+            <ul class="text-xs text-slate-300 space-y-1.5 mb-5">
+              <li class="flex items-start gap-1.5">
+                <span class="text-cyan-400 font-bold">✔</span>
+                <span>点对点物理光缆，不过 GFW 公网防火墙</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-cyan-400 font-bold">✔</span>
+                <span>ChatGPT-4o、Claude 3.7 原生解锁不降智</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 border-t border-indigo-900/60">
+            <a href={invisible.affiliateUrl || invisible.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="flex-1 text-center py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 rounded-lg shadow-sm transition-all">
+              直达企业专线 🚀
+            </a>
+            <a href={`/review/${invisible.slug}/`} class="py-2 px-3 text-xs font-semibold text-slate-200 bg-indigo-900/80 hover:bg-indigo-800 rounded-lg transition-colors">
+              评测
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Card 3: 极低起步轻量门槛 (Flycat 飞猫云) -->
+      {flycat && (
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all relative flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                轻量平价优选
+              </span>
+              <span class="text-xs font-bold text-slate-500">★ 实测 9.5 分</span>
+            </div>
+
+            <h3 class="text-xl font-black text-slate-900 group-hover:text-emerald-600 transition-colors mb-1">
+              {flycat.name}
+            </h3>
+            <p class="text-xs text-slate-500 mb-4 line-clamp-2">
+              {flycat.tagline}
+            </p>
+
+            <div class="bg-emerald-50/50 rounded-xl p-3 border border-emerald-100 flex items-center justify-between mb-4">
+              <div>
+                <span class="text-2xl font-black text-emerald-700">¥{flycat.startingPrice}</span>
+                <span class="text-xs text-slate-500">/ 月起</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-slate-700 block">{flycat.plans[0].bandwidthGB} GB / 月</span>
+                <span class="text-[11px] text-emerald-600 font-extrabold">单GB低至 ¥{flycat.plans[0].pricePerGB}</span>
+              </div>
+            </div>
+
+            {flycat.coupon && (
+              <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200/80 px-2.5 py-1.5 rounded-lg mb-4 font-semibold flex items-center justify-between">
+                <span>优惠码：<code class="bg-white px-1.5 py-0.5 rounded font-bold text-amber-700">{flycat.coupon}</code></span>
+                <span class="text-[11px] text-amber-600">折扣立减</span>
+              </div>
+            )}
+
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>低门槛起步，学生党与轻度冲浪首选</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>支持流媒体与主流开发工具分流</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 border-t border-slate-100">
+            <a href={flycat.affiliateUrl || flycat.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="flex-1 text-center py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-colors">
+              官网直达选购 🚀
+            </a>
+            <a href={`/review/${flycat.slug}/`} class="py-2 px-3 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              评测
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Card 4: 高稳定专线 (Wuyou 无忧) -->
+      {wuyou && (
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all relative flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">
+                IPLC专线保障
+              </span>
+              <span class="text-xs font-bold text-slate-500">★ 实测 9.48 分</span>
+            </div>
+
+            <h3 class="text-xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors mb-1">
+              {wuyou.name}
+            </h3>
+            <p class="text-xs text-slate-500 mb-4 line-clamp-2">
+              {wuyou.tagline}
+            </p>
+
+            <div class="bg-indigo-50/50 rounded-xl p-3 border border-indigo-100 flex items-center justify-between mb-4">
+              <div>
+                <span class="text-2xl font-black text-indigo-700">¥{wuyou.startingPrice}</span>
+                <span class="text-xs text-slate-500">/ 月付</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-slate-700 block">{wuyou.plans[0].bandwidthGB} GB 专线</span>
+                <span class="text-[11px] text-indigo-600 font-bold">SLA 99.6% 可用</span>
+              </div>
+            </div>
+
+            {wuyou.coupon && (
+              <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200/80 px-2.5 py-1.5 rounded-lg mb-4 font-semibold flex items-center justify-between">
+                <span>券码：<code class="bg-white px-1.5 py-0.5 rounded font-bold text-amber-700">{wuyou.coupon}</code></span>
+                <span class="text-[11px] text-amber-600">立减优惠</span>
+              </div>
+            )}
+
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>纯净专线中转，日常办公与外贸省心之选</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>支持 3 台设备并发，规则分流精准</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 border-t border-slate-100">
+            <a href={wuyou.affiliateUrl || wuyou.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="flex-1 text-center py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition-colors">
+              官网直达选购 🚀
+            </a>
+            <a href={`/review/${wuyou.slug}/`} class="py-2 px-3 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              评测
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Card 5: 电竞与外服联机优化 (FlashLeap 闪跃) -->
+      {flashleap && (
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-lg transition-all relative flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg">
+                电竞外服联机优化
+              </span>
+              <span class="text-xs font-bold text-slate-500">SLA 99.8%</span>
+            </div>
+
+            <h3 class="text-xl font-black text-slate-900 group-hover:text-rose-600 transition-colors mb-1">
+              {flashleap.name}
+            </h3>
+            <p class="text-xs text-slate-500 mb-4 line-clamp-2">
+              {flashleap.tagline}
+            </p>
+
+            <div class="bg-rose-50/50 rounded-xl p-3 border border-rose-100 flex items-center justify-between mb-4">
+              <div>
+                <span class="text-2xl font-black text-rose-700">¥{flashleap.startingPrice}</span>
+                <span class="text-xs text-slate-500">/ 月付</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-slate-700 block">{flashleap.plans[0].bandwidthGB} GB 高速</span>
+                <span class="text-[11px] text-rose-600 font-bold">Steam / Apex 专线</span>
+              </div>
+            </div>
+
+            {flashleap.coupon && (
+              <div class="text-xs bg-amber-50 text-amber-900 border border-amber-200/80 px-2.5 py-1.5 rounded-lg mb-4 font-semibold flex items-center justify-between">
+                <span>券码：<code class="bg-white px-1.5 py-0.5 rounded font-bold text-amber-700">{flashleap.coupon}</code></span>
+                <span class="text-[11px] text-amber-600">折扣立减</span>
+              </div>
+            )}
+
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-5">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>纯 IPLC 物理专线，延迟抖动几乎为零</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-500 font-bold">✔</span>
+                <span>4 台并发设备，外贸办公与游戏两不误</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 border-t border-slate-100">
+            <a href={flashleap.affiliateUrl || flashleap.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="flex-1 text-center py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow-sm transition-colors">
+              官网直达选购 🚀
+            </a>
+            <a href={`/review/${flashleap.slug}/`} class="py-2 px-3 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              评测
+            </a>
+          </div>
+        </div>
+      )}
+
+      <!-- Card 6: 专题横向对比卡片 -->
+      <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-2xl p-6 shadow-md flex flex-col justify-between">
+        <div>
+          <div class="inline-block px-2.5 py-1 rounded text-xs font-bold bg-blue-500/20 text-blue-300 mb-3 border border-blue-400/30">
+            ⚖️ 在线横向对比工具
+          </div>
+          <h3 class="text-xl font-black text-white mb-2">
+            拿不准选哪家？
+          </h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-6">
+            支持同时挑选 2~4 家品牌进行同屏横向对比。涵盖每 GB 真实单价、SLA 在线率、线路协议、AI 解锁支持与设备限制等十余个硬核维度。
+          </p>
+        </div>
+        <div>
+          <a href="/compare/" class="block w-full text-center py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transition-all">
+            立即打开参数比对工具 →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

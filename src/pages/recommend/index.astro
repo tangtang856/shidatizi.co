@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allAirports } from '../../data/index.js';
+
+const scenarios = [
+  {
+    slug: "budget",
+    title: "便宜低预算精选",
+    badge: "月费低至 ¥7",
+    color: "emerald",
+    icon: "💰",
+    desc: "适合学生党与预算有限的轻度上网用户，主打极高性价比、超低门槛月付与充沛流量。",
+    topPicks: ["微风网络 Breezenet", "飞猫云", "萤火虫 (Firefly)", "隐形人"],
+    href: "/recommend/budget/"
+  },
+  {
+    slug: "premium",
+    title: "高端专线节点",
+    badge: "全 IPLC/IEPL",
+    color: "indigo",
+    icon: "💎",
+    desc: "全物理专线内网直连，晚高峰0丢包4K秒开，极度适合跨境电商、外贸办公及海外金融交易。",
+    topPicks: ["隐形人", "闪跃 FlashLeap", "无忧 (无忧链接)", "灵猫"],
+    href: "/recommend/premium/"
+  },
+  {
+    slug: "beginner",
+    title: "新手小白入门",
+    badge: "一键配置导入",
+    color: "blue",
+    icon: "🌱",
+    desc: "提供傻瓜式一键客户端或详尽中文客户端教程，客服响应及时，无需理解复杂网络规则。",
+    topPicks: ["微风网络 Breezenet", "飞猫云", "暮光网络", "无忧 (无忧链接)"],
+    href: "/recommend/beginner/"
+  },
+  {
+    slug: "stable",
+    title: "稳定优先专区",
+    badge: "99.9% 严苛SLA",
+    color: "rose",
+    icon: "🛡️",
+    desc: "多机房冗余热备与多入多出负载均衡，特殊敏感时期网络不失联，企业级抗封锁架构。",
+    topPicks: ["隐形人", "闪跃 FlashLeap", "浪网 WaveNet", "灵猫"],
+    href: "/recommend/stable/"
+  },
+  {
+    slug: "ai",
+    title: "AI 生产力专用",
+    badge: "原生IP解锁",
+    color: "purple",
+    icon: "🤖",
+    desc: "配备纯净住宅原生IP，完美解除ChatGPT、Claude 3.5、Midjourney与Copilot区域屏蔽与风控封号。",
+    topPicks: ["闪跃 FlashLeap", "隐形人", "微风网络 Breezenet", "无忧 (无忧链接)"],
+    href: "/recommend/ai/"
+  },
+  {
+    slug: "streaming",
+    title: "4K 流媒体专线",
+    badge: "超清秒开无缓冲",
+    color: "cyan",
+    icon: "🍿",
+    desc: "大带宽直通节点，全面解锁 Netflix、Disney+、YouTube Premium、HBO Max 与动画疯全球片库。",
+    topPicks: ["微风网络 Breezenet", "浪网 WaveNet", "暮光网络", "飞猫云"],
+    href: "/recommend/streaming/"
+  }
+];
+---
+
+<BaseLayout
+  title="精选翻墙机场专题推荐指南 - 按使用场景科学选购梯子节点 - shidatizi.co"
+  description="针对便宜低预算、高端专线、新手入门、稳定抗封锁、AI生产力与4K流媒体六大核心使用场景，提供权威客观的翻墙机场梯子节点选购指南。"
+  keywords="机场推荐, 场景选购, 便宜机场, 高端专线, 新手翻墙, AI梯子, 流媒体解锁, 稳定节点"
+  breadcrumbs={[{ name: "场景专题推荐" }]}
+>
+  <div class="py-12 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 mb-3">
+          🎯 需求导向 · 拒绝盲目跟风
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          按核心使用场景精选机场推荐专题
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+          没有任何一家机场能适合所有人。根据您的真实使用诉求（预算控制、晚高峰办公、AI生产力、游戏联机还是影音娱乐），选择针对性优化的优质节点服务。
+        </p>
+      </div>
+
+      <!-- Scenarios Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {scenarios.map((s) => (
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between hover:shadow-xl hover:border-blue-300 transition-all group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-3xl">{s.icon}</span>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors">
+                  {s.badge}
+                </span>
+              </div>
+              <h2 class="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                {s.title}
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed mb-6">
+                {s.desc}
+              </p>
+              
+              <div class="mb-6">
+                <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">精选入围代表品牌</div>
+                <div class="flex flex-wrap gap-1.5">
+                  {s.topPicks.map((pick) => (
+                    <span class="text-xs bg-slate-50 border border-slate-100 text-slate-600 px-2 py-0.5 rounded-md">
+                      {pick}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <a
+              href={s.href}
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-white bg-slate-900 hover:bg-blue-600 shadow-sm transition-all"
+            >
+              查看该专题完整指南与测评
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Expert Decision Guide -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 max-w-4xl mx-auto shadow-sm">
+        <h3 class="text-xl font-black text-slate-900 mb-4 flex items-center gap-2">
+          <span>💡</span> 科学选购翻墙机场的三大黄金法则
+        </h3>
+        <div class="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+          <div class="flex items-start gap-3">
+            <span class="font-bold text-blue-600 bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center shrink-0">1</span>
+            <p><strong>初次购买坚决按月付费：</strong>无论服务商宣称的年付折扣多么诱人，初次体验任何机场都强烈建议优先按月订阅。待实际体验跨越晚高峰与敏感期至少一个月且表现满意后，再考虑长周期套餐。</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="font-bold text-blue-600 bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center shrink-0">2</span>
+            <p><strong>业务与娱乐严格分流：</strong>如果您需要进行远程跨国工作、外贸订单处理或ChatGPT深度对话，建议常备一条IPLC/IEPL纯专线作为生产力主力；日常大流量追剧与下载则可配合高性价比平价中转机场，成本与稳定性兼备。</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="font-bold text-blue-600 bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center shrink-0">3</span>
+            <p><strong>重视节点纯净度与流媒体解锁：</strong>低端机场往往由数千人共享少量公网出口IP，极易触发Cloudflare人机验证并被ChatGPT或Netflix直接拉黑封禁。购买前请查阅我们的实测评测报告以获取最新解锁状态。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

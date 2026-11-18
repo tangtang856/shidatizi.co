@@ -1,0 +1,142 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  schema?: any;
+}
+
+const {
+  title,
+  description,
+  keywords = "机场推荐, 机场节点, 性价比机场, 梯子推荐, vpn, vpn机场, vpn节点, vpn推荐",
+  canonical,
+  breadcrumbs = [],
+  schema = null
+} = Astro.props;
+
+const BASE_DOMAIN = "https://shidatizi.co";
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical || `${BASE_DOMAIN}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
+
+// 默认 Schema
+const defaultSchemas: any[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "十代梯子 · 优质机场与VPN评测指南",
+    "url": `${BASE_DOMAIN}/`,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${BASE_DOMAIN}/compare/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  }
+];
+
+if (breadcrumbs.length > 0) {
+  defaultSchemas.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": `${BASE_DOMAIN}/`
+      },
+      ...breadcrumbs.map((b, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 2,
+        "name": b.name,
+        "item": b.href ? `${BASE_DOMAIN}${b.href}` : canonicalUrl
+      }))
+    ]
+  });
+}
+
+if (schema) {
+  if (Array.isArray(schema)) {
+    defaultSchemas.push(...schema);
+  } else {
+    defaultSchemas.push(schema);
+  }
+}
+
+const jsonLd = JSON.stringify(defaultSchemas.length === 1 ? defaultSchemas[0] : defaultSchemas);
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="keywords" content={keywords}>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href={canonicalUrl}>
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:site_name" content="十代梯子 · shidatizi.co">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={jsonLd}></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white flex flex-col min-h-screen">
+  <Header currentPath={currentPath} />
+
+  {breadcrumbs.length > 0 && (
+    <div class="bg-white border-b border-slate-200/60 py-2.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center space-x-2 text-xs text-slate-500 overflow-x-auto whitespace-nowrap" aria-label="面包屑">
+          <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+          {breadcrumbs.map((b, idx) => {
+            const isLast = idx === breadcrumbs.length - 1;
+            return (
+              <>
+                <span class="text-slate-300">/</span>
+                {isLast ? (
+                  <span class="text-slate-800 font-medium">{b.name}</span>
+                ) : (
+                  <a href={b.href || "#"} class="hover:text-blue-600 transition-colors">{b.name}</a>
+                )}
+              </>
+            );
+          })}
+        </nav>
+      </div>
+    </div>
+  )}
+
+  <main class="flex-grow">
+    <slot />
+  </main>
+
+  <Footer />
+</body>
+</html>

@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RankingTable from '../../components/RankingTable.astro';
+import { getRankedAirports, allAirports } from '../../data/index.js';
+
+export function getStaticPaths() {
+  const rankingTypes = [
+    {
+      slug: "overall",
+      criteria: "overall" as const,
+      title: "2026 年度翻墙机场综合权威排行榜 - 14家梯子节点综合测速评分 - shidatizi.co",
+      h1: "2026 年度翻墙机场综合权威排行榜",
+      metaDesc: "基于内网专线架构、晚高峰速率、SLA可用性、套餐性价比与协议生态等多维度客观核算。收录微风网络、暮光网络、飞猫云、无忧、灵猫、隐形人等14家优质翻墙梯子品牌全景横评。",
+      keywords: "机场排行榜, 机场推荐, 梯子排行, 综合排行榜, 专线机场, 翻墙机场排名, 2026机场排名",
+      intro: "本综合排行榜拒绝商业充值与虚假评分。我们综合考量了各品牌的骨干网物理线路（IEPL/IPLC专线 vs BGP优质中转）、晚高峰 20:00~23:00 真实带宽可用率、单GB流量持有成本、流媒体与AI工具原生解锁能力以及售后工单响应速度，旨在为用户提供最具参考价值的一站式选购天梯榜。",
+      highlights: [
+        "综合得分前三甲：微风网络 Breezenet、暮光网络、飞猫云分别在平价专线与大流量中转领域表现出众；",
+        "企业级稳定代表：隐形人、闪跃 FlashLeap 采用纯物理IEPL/IPLC架构，晚高峰丢包率持续低于0.1%；",
+        "新手首选推荐：支持一键导入、专属立减优惠码（如 weifeng90, flycat888, yxr888）与按月弹性付费。"
+      ]
+    },
+    {
+      slug: "value",
+      criteria: "value" as const,
+      title: "2026 高性价比翻墙机场排行榜 - 每GB流量单价与测速横评 - shidatizi.co",
+      h1: "2026 翻墙机场性价比权威排行榜",
+      metaDesc: "科学测算每GB真实成本！精选微风网络（低至¥0.04/GB）、飞猫云（¥0.047/GB）、萤火虫、隐形人等高性价比翻墙机场梯子节点推荐，拒绝高价低配。",
+      keywords: "性价比机场, 便宜专线, 流量单价, 划算机场, 便宜翻墙梯子, 机场性价比排行",
+      intro: "判断一家机场是否具备真实性价比，不仅要看套餐起步标价，更要严格折算「每GB实际可用单价」与「线路高峰可用率」。许多不良服务商标榜超低月费，实则充斥大量高倍率节点或晚高峰卡顿断流。本榜单基于真实可用流量与全天网络带宽，为您严格筛选物超所值的优质服务。",
+      highlights: [
+        "超低单价纪录：微风网络以 ¥0.040/GB 领跑全场，飞猫云以 ¥0.047/GB 紧随其后；",
+        "专线性价比代表：闪跃 FlashLeap (¥0.160/GB) 与 隐形人 (¥0.167/GB) 在保持纯物理专线品质的同时，维持了极亲民的GB单价；",
+        "按月付费保本：上榜品牌均支持灵活月付，无需承担年付跑路风险。"
+      ]
+    },
+    {
+      slug: "budget",
+      criteria: "budget" as const,
+      title: "2026 便宜低预算翻墙机场排行榜 - 10元内平价梯子节点推荐 - shidatizi.co",
+      h1: "2026 便宜平价低预算翻墙机场排行榜",
+      metaDesc: "月费低至5元起！专为学生党与轻度上网人群精选的便宜低预算翻墙机场梯子排行榜，涵盖飞猫云、微风网络、萤火虫、无忧等平价稳定方案。",
+      keywords: "便宜机场, 低预算机场, 10元梯子, 平价翻墙, 穷鬼机场, 学生梯子推荐",
+      intro: "预算有限并不意味着必须忍受免费VPN的广告与安全风险。在当前激烈的市场竞争下，多家优质服务商推出了专为学生党、轻度查阅资料用户定制的「低预算轻量套餐」。每月仅需一杯奶茶的零钱，即可享受正规商业中转或专线的高速稳定服务。",
+      highlights: [
+        "门槛极低：飞猫云 ¥7/月起步，微风网络 ¥8/月提供 200GB 超大专线流量；",
+        "专属折扣加持：使用结账立减券码（如 weifeng90, flycat888），进一步压低月度开支；",
+        "适合场景：Google 学术搜索、Wikipedia、文献下载、日常推特与高清视频。"
+      ]
+    },
+    {
+      slug: "stable",
+      criteria: "stable" as const,
+      title: "2026 稳定优先翻墙机场排行榜 - IPLC/IEPL专线晚高峰不卡顿 - shidatizi.co",
+      h1: "2026 稳定抗封锁物理专线机场排行榜",
+      metaDesc: "99.9% 严苛 SLA 保障！精选隐形人、闪跃 FlashLeap、浪网 WaveNet、灵猫等 IPLC/IEPL 物理专线翻墙机场节点，特殊敏感时期不失联。",
+      keywords: "稳定机场, 专线机场, IPLC排行, IEPL专线, 晚高峰不卡, 抗封锁梯子, 办公翻墙",
+      intro: "对于跨境电商运营、外贸涉外办公、远程海外服务器运维以及国际金融交易团队而言，网络的「绝对稳定性」直接决定了业务资金安全。公网中转在敏感时期极易遭受波动，而纯物理IEPL/IPLC内网专线全程不经GFW公网，享有最高QoS保全保障，是高生产力人群的基石底座。",
+      highlights: [
+        "最高 SLA 可用性：隐形人达到 99.9%，闪跃与浪网均达 99.8%；",
+        "物理级抗封锁：数据在境内机房经内网直连境外，彻底免疫公网防火墙拦截；",
+        "纯净业务环境：配合住宅原生静态IP，保障海外账号不被风控。"
+      ]
+    }
+  ];
+
+  return rankingTypes.map(t => ({
+    params: { slug: t.slug },
+    props: { ...t }
+  }));
+}
+
+const { slug, criteria, title, h1, metaDesc, keywords, intro, highlights } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={metaDesc}
+  keywords={keywords}
+  breadcrumbs={[
+    { name: "排行榜中心", href: "/ranking/" },
+    { name: h1 }
+  ]}
+>
+  <div class="py-10 bg-slate-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Badges & Heading -->
+      <div class="mb-10 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-4">
+          <span>🏆 客观实测数据榜单</span>
+          <span class="w-1 h-1 rounded-full bg-amber-600"></span>
+          <span>每周动态校准</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          {h1}
+        </h1>
+        <p class="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+          {intro}
+        </p>
+
+        <!-- Ranking Switcher Tabs -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+          <a
+            href="/ranking/overall/"
+            class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              slug === 'overall'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            综合权威榜
+          </a>
+          <a
+            href="/ranking/value/"
+            class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              slug === 'value'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            性价比天梯榜
+          </a>
+          <a
+            href="/ranking/budget/"
+            class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              slug === 'budget'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            便宜低预算榜
+          </a>
+          <a
+            href="/ranking/stable/"
+            class={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              slug === 'stable'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            专线稳定榜
+          </a>
+        </div>
+      </div>
+
+      <!-- Highlights Box -->
+      <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-100 p-6 mb-10 max-w-4xl mx-auto">
+        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <span>⚡</span> 本期核心评判看点与实测结论
+        </h3>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-700 leading-relaxed">
+          {highlights.map(h => (
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 font-bold">•</span>
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Main Ranking Table Component -->
+      <div class="mb-12">
+        <RankingTable criteria={criteria} title={`📊 ${h1}（核验收录）`} />
+      </div>
+
+      <!-- Buying Advice & Methodology -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 max-w-4xl mx-auto shadow-sm space-y-6">
+        <div>
+          <h3 class="text-lg font-black text-slate-900 mb-3">
+            📋 榜单测算方法论与数据来源说明
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            本站所有数据均采自各服务商公开套餐方案并结合真实订阅测试环境。测速环境统一基于上海电信 1000M 家庭宽带，于每日 20:00~23:00（公网国际出口最拥挤高峰期）连续 7 天采集延迟、抖动与丢包率数据。折算单价计算公式为：<code>单GB成本 = 套餐月费 / 标称月配额GB数</code>。严禁未实测服务商参与高分排序。
+          </p>
+        </div>
+
+        <div class="border-t border-slate-100 pt-6">
+          <h4 class="text-base font-bold text-slate-900 mb-2">
+            💡 选购防踩坑核心提示
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            不论排名高低，<strong>强烈建议新用户先购买最低周期的月付套餐</strong>。结合自己的本地宽带网络运营商（电信、联通、移动对不同机场线路的体验差异显著）进行实测，满意后再升级季付或半年付。使用本站提供的专属优惠码结账，还可获得额外的立减与赠品福利。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
