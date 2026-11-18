@@ -1,0 +1,27 @@
+{
+  "name": "shidatizi-co",
+  "version": "1.0.0",
+  "description": "2026优质机场推荐与VPN梯子节点评测指南 - 专业Bing SEO中文资讯门户",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/generate-sitemap.js && node scripts/check-links.js && node scripts/audit-seo.js",
+    "test": "node scripts/check-links.js && node scripts/validate-content.js && node scripts/audit-seo.js",
+    "audit": "node scripts/audit-seo.js",
+    "check-links": "node scripts/check-links.js",
+    "validate": "node scripts/validate-content.js",
+    "indexnow": "node scripts/indexnow.js"
+  },
+  "keywords": [
+    "机场推荐",
+    "机场节点",
+    "性价比机场",
+    "梯子推荐",
+    "vpn",
+    "vpn机场",
+    "vpn节点",
+    "vpn推荐"
+  ],
+  "author": "shidatizi.co",
+  "license": "MIT"
+}

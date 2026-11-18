@@ -1,0 +1,44 @@
+Keyword,Intent,Target URL,Page Type,Priority,Title,H1
+机场推荐,Commercial,https://shidatizi.co/index.html,Pillar / Homepage,High,2026优质机场推荐与VPN梯子节点评测指南 - 性价比与稳定翻墙节点排行,2026优质机场推荐与VPN梯子节点评测指南
+梯子推荐,Commercial,https://shidatizi.co/index.html,Pillar / Homepage,High,2026优质机场推荐与VPN梯子节点评测指南 - 性价比与稳定翻墙节点排行,2026优质机场推荐与VPN梯子节点评测指南
+性价比机场,Commercial / Value,https://shidatizi.co/ranking/value/index.html,Ranking Page,High,2026高性价比机场推荐排行榜 - 便宜好用的VPN梯子节点测算,2026高性价比机场排行榜与每GB单价测算
+机场节点,Informational / Commercial,https://shidatizi.co/recommend/stable/index.html,Topic Page,High,2026稳定机场节点推荐 - 低延迟专线与高可用翻墙节点精选,稳定抗封锁机场节点精选与专线推荐
+vpn,Informational / Navigational,https://shidatizi.co/guides/index.html,Guide Hub,High,VPN与翻墙机场基础指南 - 新手客户端配置与选型全解,VPN与翻墙机场基础入门指南
+vpn推荐,Commercial,https://shidatizi.co/ranking/overall/index.html,Ranking Page,High,2026综合翻墙VPN与机场推荐榜 - 真实线路与稳定性排行榜,2026年度综合翻墙VPN与机场推荐排行榜
+vpn机场,Commercial / Beginner,https://shidatizi.co/recommend/beginner/index.html,Topic Page,High,新手小白VPN机场推荐 - 一键导入与简单好用的梯子节点,适合新手的优质VPN机场推荐指南
+vpn节点,Technical / Commercial,https://shidatizi.co/recommend/premium/index.html,Topic Page,High,高端专线VPN节点推荐 - IPLC与IEPL晚高峰4K秒开机场精选,高端专线IPLC与IEPL机场VPN节点推荐
+便宜机场推荐,Commercial / Budget,https://shidatizi.co/recommend/budget/index.html,Topic Page,High,便宜低预算机场推荐 - 10元以下平价翻墙梯子节点,平价低预算机场推荐与防坑指南
+低预算机场排行榜,Commercial / Budget,https://shidatizi.co/ranking/budget/index.html,Ranking Page,Medium,2026平价低预算机场排行榜 - 穷鬼套餐与高性价比节点盘点,2026平价低预算机场排行榜
+稳定机场排行榜,Technical / Reliability,https://shidatizi.co/ranking/stable/index.html,Ranking Page,High,2026最稳定机场排行榜 - 高可用SLA专线翻墙节点测算,2026最稳定机场专线排行榜
+AI机场节点推荐,Technical / AI,https://shidatizi.co/recommend/ai/index.html,Topic Page,High,ChatGPT与Claude专用机场节点推荐 - 原生IP不降智梯子精选,AI生产力专用机场节点与解锁指南
+流媒体解锁机场,Entertainment,https://shidatizi.co/recommend/streaming/index.html,Topic Page,Medium,Netflix与Disney+流媒体解锁机场推荐 - 4K无缓冲节点精选,4K流媒体解锁专线机场与梯子节点推荐
+机场横向对比,Commercial Investigation,https://shidatizi.co/compare/index.html,Comparison Tool,High,机场节点横向参数对比工具 - 价格线路与支持协议全方位PK,机场横向参数与性价比多维度对比工具
+Windows梯子配置教程,Tutorial,https://shidatizi.co/guides/windows/index.html,Tutorial,High,Windows电脑翻墙客户端配置教程 - Clash Verge Rev与v2rayN指南,Windows电脑翻墙客户端配置与使用教程
+Android梯子配置教程,Tutorial,https://shidatizi.co/guides/android/index.html,Tutorial,High,安卓手机翻墙客户端配置教程 - Clash Meta与v2rayNG图文指南,安卓手机翻墙客户端配置与节点导入指南
+iOS梯子配置教程,Tutorial,https://shidatizi.co/guides/ios/index.html,Tutorial,High,iPhone苹果手机翻墙客户端教程 - Shadowrocket小火箭与Stash配置,iPhone与iPad苹果客户端Shadowrocket配置教程
+macOS梯子配置教程,Tutorial,https://shidatizi.co/guides/macos/index.html,Tutorial,High,Mac苹果电脑翻墙客户端教程 - Clash Verge与Sing-box指南,macOS系统翻墙客户端配置与优化教程
+机场协议对比,Technical Guide,https://shidatizi.co/blog/protocol-comparison/index.html,Blog Article,High,Shadowsocks与Trojan及Hysteria2协议深度对比 - 哪种翻墙节点更抗封锁,2026主流翻墙协议全方位对比指南
+便宜机场防坑指南,Security / Informational,https://shidatizi.co/blog/cheap-airport-traps/index.html,Blog Article,High,为什么便宜机场总是跑路？揭秘低价VPN梯子的5大营销陷阱,为什么低价机场总容易跑路？5大避坑法则
+专线与中转区别,Technical Architecture,https://shidatizi.co/blog/iepl-iplc-relay/index.html,Blog Article,High,IEPL专线与中转隧道有什么区别？晚高峰稳定不卡顿底层解析,IEPL专线与BGP中转节点深度解析
+AI专用节点指标,Technical Guide,https://shidatizi.co/blog/ai-airport-guide/index.html,Blog Article,High,挑选ChatGPT与Claude专用机场节点的4个硬性指标,挑选AI大模型专用机场节点的硬性标准
+订阅转换安全指南,Security Tutorial,https://shidatizi.co/blog/subconverter-security/index.html,Blog Article,High,机场订阅转换安全使用指南 - 防止节点泄露与自建教程,机场订阅转换安全使用与防偷节点指南
+IPLC专线词条,Glossary,https://shidatizi.co/glossary/iplc-iepl/index.html,Glossary,Medium,什么是IPLC与IEPL专线？ - 机场名词百科,百科：IPLC与IEPL专线技术详解
+节点倍率词条,Glossary,https://shidatizi.co/glossary/node-multiplier/index.html,Glossary,Medium,什么是机场节点倍率？ - 计费规则与流量计算百科,百科：机场节点倍率与实际流量折算
+BGP中转词条,Glossary,https://shidatizi.co/glossary/bgp-tunnel/index.html,Glossary,Medium,什么是BGP中转与隧道节点？ - 线路类型百科,百科：BGP入口中转与隧道加速原理
+规则分流词条,Glossary,https://shidatizi.co/glossary/rules-routing/index.html,Glossary,Medium,什么是分流规则与GEOIP？ - 客户端代理模式百科,百科：客户端规则分流与代理模式
+DNS污染词条,Glossary,https://shidatizi.co/glossary/dns-leak-pollution/index.html,Glossary,Medium,什么是DNS污染与SNI阻断？ - 防火墙封锁原理百科,百科：DNS污染与SNI阻断原理及解决办法
+TAG Internet评测,Review,https://shidatizi.co/review/tag-internet/index.html,Review Page,High,TAG Internet机场深度评测 - 全球小众节点与高端IEPL专线表现,TAG Internet机场深度评测与配置解析
+FlyingBird评测,Review,https://shidatizi.co/review/flyingbird/index.html,Review Page,High,FlyingBird飞鸟机场评测 - 稳定中转与高性价比套餐实测分析,FlyingBird飞鸟机场深度评测与性价比解析
+Kuromis评测,Review,https://shidatizi.co/review/kuromis/index.html,Review Page,High,Kuromis黑猫机场评测 - 精品专线与AI大模型解锁支持评测,Kuromis黑猫机场深度评测与使用体验
+西西机场评测,Review,https://shidatizi.co/review/xixi/index.html,Review Page,High,西西机场评测 - 平价大流量与多设备入门梯子节点实测,西西机场平价入门与大流量套餐评测
+SpeedCAT评测,Review,https://shidatizi.co/review/speedcat/index.html,Review Page,High,SpeedCAT闪电猫机场评测 - 全专线低延迟与流媒体极速体验,SpeedCAT闪电猫机场深度评测与线路分析
+TAG Internet资料页,Directory,https://shidatizi.co/airport/tag-internet/index.html,Airport Directory,Medium,TAG Internet机场详细资料与套餐信息 - shidatizi.co,TAG Internet机场资料库档案
+FlyingBird资料页,Directory,https://shidatizi.co/airport/flyingbird/index.html,Airport Directory,Medium,FlyingBird飞鸟机场详细资料与套餐信息 - shidatizi.co,FlyingBird飞鸟机场资料库档案
+Kuromis资料页,Directory,https://shidatizi.co/airport/kuromis/index.html,Airport Directory,Medium,Kuromis黑猫机场详细资料与套餐信息 - shidatizi.co,Kuromis黑猫机场资料库档案
+西西机场资料页,Directory,https://shidatizi.co/airport/xixi/index.html,Airport Directory,Medium,西西机场详细资料与套餐信息 - shidatizi.co,西西机场资料库档案
+SpeedCAT资料页,Directory,https://shidatizi.co/airport/speedcat/index.html,Airport Directory,Medium,SpeedCAT闪电猫机场详细资料与套餐信息 - shidatizi.co,SpeedCAT闪电猫机场资料库档案
+关于我们,Trust,https://shidatizi.co/about/index.html,Trust Page,Low,关于我们 - shidatizi.co 独立机场评测与指南,关于 shidatizi.co
+联系我们,Trust,https://shidatizi.co/contact/index.html,Trust Page,Low,联系我们 - 反馈与商务合作,联系我们
+编辑政策,Trust,https://shidatizi.co/editorial-policy/index.html,Trust Page,Medium,编辑政策与评测标准 - shidatizi.co,编辑政策与评测独立性说明
+隐私政策,Trust,https://shidatizi.co/privacy-policy/index.html,Trust Page,Low,隐私政策 - shidatizi.co 用户数据与隐私说明,隐私政策
+免责声明,Trust,https://shidatizi.co/disclaimer/index.html,Trust Page,Low,免责声明与服务协议 - shidatizi.co,免责声明

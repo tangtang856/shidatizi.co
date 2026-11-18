@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows电脑翻墙客户端配置教程 - Clash Verge Rev与v2rayN指南 - shidatizi.co</title>
+  <meta name="description" content="详细图文指引Windows 10/11系统配置Clash Verge Rev与v2rayN客户端。涵盖订阅导入、系统代理、Tun虚拟网卡游戏代理与常见报错解决。">
+  <meta name="keywords" content="Windows梯子教程, Clash Verge教程, v2rayN配置, 电脑翻墙, Windows翻墙软件">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://shidatizi.co/guides/windows/">
+  
+  <!-- Open Graph -->
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Windows电脑翻墙客户端配置教程 - Clash Verge Rev与v2rayN指南 - shidatizi.co">
+  <meta property="og:description" content="详细图文指引Windows 10/11系统配置Clash Verge Rev与v2rayN客户端。涵盖订阅导入、系统代理、Tun虚拟网卡游戏代理与常见报错解决。">
+  <meta property="og:url" content="https://shidatizi.co/guides/windows/">
+  <meta property="og:site_name" content="十代梯子 · shidatizi.co">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Windows电脑翻墙客户端配置教程 - Clash Verge Rev与v2rayN指南 - shidatizi.co">
+  <meta name="twitter:description" content="详细图文指引Windows 10/11系统配置Clash Verge Rev与v2rayN客户端。涵盖订阅导入、系统代理、Tun虚拟网卡游戏代理与常见报错解决。">
+  
+  <!-- 原生CSS规范：严格使用相对路径 -->
+  <link rel="stylesheet" href="../../css/style.css">
+  
+  <!-- 结构化数据 (JSON-LD) -->
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "十代梯子 · 优质机场与VPN评测指南",
+    "url": "https://shidatizi.co/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://shidatizi.co/compare/index.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://shidatizi.co/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "使用教程",
+        "item": "https://shidatizi.co/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Windows电脑翻墙客户端配置与使用教程",
+        "item": "https://shidatizi.co/guides/windows/"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+<body data-root="../../">
+
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../../index.html" class="site-logo">
+        <span class="logo-badge">10</span>
+        <span>十代梯子</span>
+      </a>
+
+      <nav class="site-nav">
+        <a href="../../index.html" class="nav-link ">首页</a>
+        <a href="../../ranking/overall/index.html" class="nav-link ">机场排行</a>
+        <a href="../../recommend/budget/index.html" class="nav-link ">精选推荐</a>
+        <a href="../../compare/index.html" class="nav-link ">机场对比</a>
+        <a href="../index.html" class="nav-link active">配置教程</a>
+        <a href="../../blog/index.html" class="nav-link ">深度博客</a>
+        <a href="../../glossary/index.html" class="nav-link ">术语百科</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-btn" aria-label="全站搜索">
+          <span>🔍</span>
+          <span>搜索...</span>
+        </button>
+        <button type="button" class="mobile-menu-btn" aria-label="展开手机菜单">☰</button>
+      </div>
+    </div>
+
+    <!-- 手机端折叠菜单 -->
+    <div class="mobile-nav">
+      <a href="../../index.html">🏠 首页</a>
+      <a href="../../ranking/overall/index.html">🏆 综合排行榜</a>
+      <a href="../../ranking/value/index.html">💰 性价比排行榜</a>
+      <a href="../../ranking/stable/index.html">⚡ 稳定专线排行榜</a>
+      <a href="../../recommend/budget/index.html">🪙 平价低预算推荐</a>
+      <a href="../../recommend/premium/index.html">💎 高端专线推荐</a>
+      <a href="../../recommend/ai/index.html">🤖 ChatGPT/Claude AI专用</a>
+      <a href="../../compare/index.html">⚖️ 机场横向对比工具</a>
+      <a href="../index.html">📖 客户端使用教程</a>
+      <a href="../../blog/index.html">✍️ 翻墙技术博客</a>
+      <a href="../../glossary/index.html">📚 代理名词百科</a>
+    </div>
+  </header>
+
+  <!-- 主体内容 -->
+  <main id="main-content">
+    
+      <div class="container" style="padding-top:2rem;">
+        <nav class="breadcrumbs" aria-label="面包屑导航">
+          <a href="../../index.html">首页</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">使用教程</a>
+          <span class="breadcrumbs-separator">/</span><span>Windows电脑翻墙客户端配置与使用教程</span>
+        </nav>
+
+        <div class="content-layout">
+          <article class="prose">
+            <h1>Windows电脑翻墙客户端配置与使用教程</h1>
+
+            <div class="article-meta">
+              <span>📅 更新时间：2026年3月</span>
+              <span>💻 适配系统：WINDOWS</span>
+              <span>✅ 校验状态：实机测试通过</span>
+            </div>
+
+            
+        <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main); font-weight:500;">
+          在 Windows 10 与 Windows 11 环境下，<strong>Clash Verge Rev</strong> 是目前最受推崇的现代代理图形化客户端。
+          它拥有现代化的美观界面，深度集成了 Mihomo (Clash.Meta) 核心，并完美支持 Tun 虚拟网卡接管系统全局流量。
+        </p>
+
+        <h2>一、下载与安装 Clash Verge Rev</h2>
+        <ol style="padding-left:1.25rem; line-height:1.8;">
+          <li>访问 Clash Verge Rev 官方 GitHub Releases 仓库（认准开源原版）；</li>
+          <li>根据你的电脑CPU架构选择安装包：64位Intel/AMD芯片请下载 <code>Clash.Verge_x64-setup.exe</code>；</li>
+          <li>双击运行安装程序，按默认步骤完成安装并启动软件。</li>
+        </ol>
+
+        <h2>二、导入机场订阅链接</h2>
+        <ol style="padding-left:1.25rem; line-height:1.8;">
+          <li>登录你在 <a href="../../index.html">shidatizi.co 推荐的机场</a> 后台，复制你的专属 Clash 订阅链接；</li>
+          <li>打开 Clash Verge Rev，在左侧导航栏点击 <strong>订阅 (Profiles)</strong>；</li>
+          <li>在顶部的输入框中粘贴刚才复制的订阅 URL，随后点击 <strong>导入 (Import)</strong> 按钮；</li>
+          <li>导入成功后，列表会出现对应的配置卡片，右键该卡片点击“选择使用”使之高亮显示。</li>
+        </ol>
+
+        <h2>三、选择节点与开启代理</h2>
+        <ol style="padding-left:1.25rem; line-height:1.8;">
+          <li>点击左侧导航栏的 <strong>代理 (Proxies)</strong> 菜单；</li>
+          <li>确保顶部代理模式选择为 <strong>规则模式 (Rule)</strong>（此模式下国内网站直连不耗流量，海外网站走代理）；</li>
+          <li>在“节点选择”分组中，展开节点列表，点击右上角的闪电图标进行批量测速，选择一个延迟较低的节点（如香港专线、日本节点）；</li>
+          <li>在软件左下角或者“设置”页面，打开 <strong>系统代理 (System Proxy)</strong> 开关；</li>
+          <li>打开浏览器访问 Google 或 YouTube，测试是否秒开加载。</li>
+        </ol>
+
+        <div class="alert alert-tip">
+          <strong>💡 开启 Tun 模式解决外服联机与终端报错：</strong>
+          如果你需要打外服游戏、使用Git命令行或某些不遵循Windows系统代理设置的软件，请在 Clash Verge 的“设置”中开启 <strong>Tun 模式 (Tun Mode)</strong>。
+          系统会自动安装虚拟网卡，接管电脑所有底层TCP/UDP流量。
+        </div>
+
+        <h2>四、Windows 常见疑难杂症</h2>
+        <ul>
+          <li><strong>关掉软件后电脑连不上网：</strong>这是由于退出软件时未正确关闭“系统代理”。打开 Windows 设置 -> 网络和Internet -> 代理，关闭“使用代理服务器”开关即可立即恢复；</li>
+          <li><strong>UWP 应用（如微软商店）无法连接：</strong>在 Clash Verge 设置中点击“Windows UWP 回环代理免疫工具”，全选并保存即可解除微软对本地代理的沙盒限制。</li>
+        </ul>
+      
+
+            <h2>五、相关技术与百科延伸阅读</h2>
+            <ul>
+              <li><a href="../../glossary/rules-routing/index.html">百科：什么是规则分流与GEOIP？</a></li>
+              <li><a href="../../glossary/dns-leak-pollution/index.html">百科：什么是DNS污染与SNI阻断？</a></li>
+              <li><a href="../../blog/subconverter-security/index.html">进阶：机场订阅转换安全防泄露使用指南</a></li>
+              <li><a href="../../ranking/overall/index.html">排行榜：查看2026全网综合翻墙机场推荐排名</a></li>
+            </ul>
+          </article>
+
+          <!-- 侧边栏 -->
+          <aside class="sidebar">
+            <div class="widget">
+              <div class="widget-title">💻 全平台配置教程导航</div>
+              <ul class="widget-list">
+                <li><a href="index.html">💻 Windows 客户端配置教程</a></li>
+                <li><a href="../android/index.html">📱 Android 手机配置教程</a></li>
+                <li><a href="../ios/index.html">🍏 iOS 小火箭 Shadowrocket 教程</a></li>
+                <li><a href="../macos/index.html">🖥️ macOS 苹果电脑配置教程</a></li>
+                <li><a href="../index.html">📖 全平台客户端选型中心</a></li>
+              </ul>
+            </div>
+
+            <div class="widget">
+              <div class="widget-title">⭐ 精选机场推荐</div>
+              <ul class="widget-list">
+                <li><a href="../../recommend/budget/index.html">🪙 平价低预算机场推荐</a></li>
+                <li><a href="../../recommend/premium/index.html">💎 高端IEPL专线推荐</a></li>
+                <li><a href="../../recommend/ai/index.html">🤖 ChatGPT/Claude专用节点</a></li>
+                <li><a href="../../compare/index.html">⚖️ 在线横向对比工具</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>十代梯子 · shidatizi.co</h4>
+          <p>
+            专注全球网络加速、海外开发网络环境、科学上网梯子与机场节点深度客观评测。基于实际网络路由、专线SLA与真实套餐单价测算，拒绝虚构测速。
+          </p>
+          <div style="font-size:0.8rem; color:var(--text-muted);">
+            最新核验更新时间：2026年3月 · 数据每日监测
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>🔥 核心专题</h5>
+          <ul class="footer-links">
+            <li><a href="../../recommend/budget/index.html">平价低预算机场</a></li>
+            <li><a href="../../recommend/premium/index.html">高端IEPL专线</a></li>
+            <li><a href="../../recommend/stable/index.html">高稳定抗封锁节点</a></li>
+            <li><a href="../../recommend/ai/index.html">ChatGPT与AI专用</a></li>
+            <li><a href="../../recommend/streaming/index.html">4K流媒体解锁</a></li>
+            <li><a href="../../compare/index.html">机场在线PK对比</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>📖 客户端教程</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Windows (Clash/v2rayN)</a></li>
+            <li><a href="../android/index.html">Android (Clash Meta)</a></li>
+            <li><a href="../ios/index.html">iOS (Shadowrocket小火箭)</a></li>
+            <li><a href="../macos/index.html">macOS (Clash Verge)</a></li>
+            <li><a href="../../blog/protocol-comparison/index.html">SS/Trojan/Hysteria2对比</a></li>
+            <li><a href="../../blog/subconverter-security/index.html">订阅转换防泄露教程</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>🛡️ 网站规范与支持</h5>
+          <ul class="footer-links">
+            <li><a href="../../about/index.html">关于我们</a></li>
+            <li><a href="../../contact/index.html">联系反馈与纠错</a></li>
+            <li><a href="../../editorial-policy/index.html">编辑政策与评测标准</a></li>
+            <li><a href="../../privacy-policy/index.html">隐私政策</a></li>
+            <li><a href="../../disclaimer/index.html">免责声明</a></li>
+            <li><a href="../../sitemap.xml">Sitemap 网站地图</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 shidatizi.co. 保留所有权利。</div>
+        <div style="font-size:0.8rem; color:var(--text-light);">
+          免责声明：本站仅提供网络技术研究与客观信息汇总，请在遵循当地法律法规前提下合理使用网络工具。
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 搜索弹窗 -->
+  <div id="searchModal" class="search-modal" role="dialog" aria-modal="true" aria-label="全站内容搜索">
+    <div class="search-dialog">
+      <div class="search-input-wrap">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索机场评测、专线、协议、客户端教程..." autocomplete="off">
+        <button type="button" class="search-close-btn" aria-label="关闭搜索">✕</button>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- 原生JS交互：严格使用相对路径 -->
+  <script src="../../js/main.js"></script>
+  <script src="../../js/search.js"></script>
+</body>
+</html>

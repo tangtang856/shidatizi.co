@@ -1,0 +1,14 @@
+# robots.txt for shidatizi.co
+# Bing SEO 规范配置
+
+User-agent: *
+Allow: /
+
+# 禁止抓取开发目录与源脚本
+Disallow: /scripts/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# 声明标准网站地图
+Sitemap: https://shidatizi.co/sitemap.xml
+Sitemap: https://shidatizi.co/sitemap-index.xml
