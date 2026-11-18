@@ -497,290 +497,6 @@
   },
   {
     "order": 6,
-    "id": "flashleap",
-    "name": "闪跃 FlashLeap",
-    "slug": "flashleap",
-    "tagline": "IPLC纯专线 · 150GB外服电竞与低延迟生产力首选",
-    "description": "闪跃 FlashLeap 全线采用高标准IPLC纯专线架构，针对外服游戏联机、Steam以及跨国视频会议进行了极致端到端延迟调优，晚高峰极度稳定。",
-    "officialUrl": "https://vip02.flashleapaff.com/#/?code=8ZIV6HQ3",
-    "affiliateUrl": "https://vip02.flashleapaff.com/#/?code=8ZIV6HQ3",
-    "coupon": "shanyue",
-    "startingPrice": 24,
-    "currency": "CNY",
-    "billingCycle": "月付",
-    "effectiveMonthlyPrice": 24,
-    "plans": [
-      {
-        "name": "闪跃专线月付",
-        "price": 24,
-        "cycle": "月付",
-        "bandwidthGB": 150,
-        "effectiveMonthlyGB": 150,
-        "pricePerGB": 0.16,
-        "note": "纯IPLC低延迟专线"
-      },
-      {
-        "name": "闪跃疾速季付",
-        "price": 68,
-        "cycle": "季付",
-        "bandwidthGB": 500,
-        "effectiveMonthlyGB": 166.6,
-        "pricePerGB": 0.136,
-        "note": "电竞级路由保障"
-      },
-      {
-        "name": "闪跃至尊年付",
-        "price": 258,
-        "cycle": "年付",
-        "bandwidthGB": 2200,
-        "effectiveMonthlyGB": 183.3,
-        "pricePerGB": 0.117,
-        "note": "年付立省优惠"
-      }
-    ],
-    "protocols": [
-      "Shadowsocks",
-      "Trojan"
-    ],
-    "regions": [
-      "香港",
-      "台湾",
-      "日本",
-      "新加坡",
-      "美国",
-      "韩国"
-    ],
-    "lineType": "IPLC纯专线",
-    "sla": "99.8%",
-    "deviceLimit": "4台设备",
-    "aiSupport": [
-      "ChatGPT",
-      "Claude",
-      "Gemini",
-      "Cursor"
-    ],
-    "streamingSupport": [
-      "Netflix",
-      "Disney+",
-      "YouTube 4K",
-      "Twitch 1080p60"
-    ],
-    "advantages": [
-      "纯IPLC物理专线，延迟抖动与丢包率极低",
-      "优惠码 shanyue 享受专属立减优惠",
-      "外服游戏（Steam/Apex/LOL）联机专线优化",
-      "150GB起步流量，单GB仅约0.16元"
-    ],
-    "disadvantages": [
-      "节点主要覆盖主流地区，冷门偏远地区较少",
-      "无10元以下超小包"
-    ],
-    "suitableFor": [
-      "外服联机游戏玩家与游戏主播",
-      "对延迟与晚高峰稳定性极度敏感者",
-      "外贸办公人员"
-    ],
-    "sources": [
-      "jiediantuijian.shop 公开数据",
-      "游戏延迟与ping监控实测",
-      "官方服务状态页"
-    ],
-    "lastVerified": "2026-03-01",
-    "testStatus": "tested",
-    "overallScore": 9.4,
-    "valueScore": 9.1,
-    "stabilityScore": 9.8,
-    "speedScore": 9.7
-  },
-  {
-    "order": 7,
-    "id": "firefly",
-    "name": "萤火虫 (Firefly)",
-    "slug": "firefly",
-    "tagline": "8元平价优质线路 · 60GB轻量入门神器",
-    "description": "萤火虫（Firefly机场）专注轻量低门槛体验，月付仅需¥8即可拥有60GB优质线路流量。提供专属优惠码，适合预算有限的学生党或作为备用梯子。",
-    "officialUrl": "https://vip02.fireflyaff.com/#/?code=uTKLkAyC",
-    "affiliateUrl": "https://vip02.fireflyaff.com/#/?code=uTKLkAyC",
-    "coupon": "firefly",
-    "startingPrice": 8,
-    "currency": "CNY",
-    "billingCycle": "月付",
-    "effectiveMonthlyPrice": 8,
-    "plans": [
-      {
-        "name": "微光月付款",
-        "price": 8,
-        "cycle": "月付",
-        "bandwidthGB": 60,
-        "effectiveMonthlyGB": 60,
-        "pricePerGB": 0.133,
-        "note": "超低门槛，试错成本低"
-      },
-      {
-        "name": "萤火进阶款",
-        "price": 16,
-        "cycle": "月付",
-        "bandwidthGB": 150,
-        "effectiveMonthlyGB": 150,
-        "pricePerGB": 0.107,
-        "note": "日常看视频优选"
-      },
-      {
-        "name": "流光年付款",
-        "price": 80,
-        "cycle": "年付",
-        "bandwidthGB": 900,
-        "effectiveMonthlyGB": 75,
-        "pricePerGB": 0.089,
-        "note": "年付备用神器"
-      }
-    ],
-    "protocols": [
-      "Shadowsocks",
-      "Trojan"
-    ],
-    "regions": [
-      "香港",
-      "台湾",
-      "日本",
-      "新加坡",
-      "美国"
-    ],
-    "lineType": "优质线路",
-    "sla": "99.2%",
-    "deviceLimit": "2台设备",
-    "aiSupport": [
-      "ChatGPT",
-      "Gemini"
-    ],
-    "streamingSupport": [
-      "YouTube 4K",
-      "Netflix（基础）"
-    ],
-    "advantages": [
-      "¥8/月超低起步价，试错成本极低",
-      "专属折扣券 firefly 额外优惠",
-      "轻量按需计费，支持随时退改续",
-      "作为第二备用梯子非常划算"
-    ],
-    "disadvantages": [
-      "基础套餐60GB较小，不适合大文件重度下载",
-      "极端敏感时期公网中转节点需留意通知更新"
-    ],
-    "suitableFor": [
-      "轻度上网、查阅资料与日常社交交流",
-      "预算有限的学生群体",
-      "寻找廉价备用梯子的用户"
-    ],
-    "sources": [
-      "jiediantuijian.shop 公开数据",
-      "编辑团队网络抽测",
-      "官方优惠公告"
-    ],
-    "lastVerified": "2026-03-01",
-    "testStatus": "tested",
-    "overallScore": 9.35,
-    "valueScore": 9.6,
-    "stabilityScore": 9,
-    "speedScore": 9.1
-  },
-  {
-    "order": 8,
-    "id": "kuajie",
-    "name": "跨界 (跨界云)",
-    "slug": "kuajie",
-    "tagline": "全专线架构 · 120GB跨境多任务办公首选",
-    "description": "跨界云采用全专线网络架构，为外贸电商、跨国会议以及多任务跨设备办公用户量身定制。月付20元配额120GB流量，兼顾成本与专线稳定性。",
-    "officialUrl": "https://vip02.kuajieaff.com/#/?code=CpJKZicY",
-    "affiliateUrl": "https://vip02.kuajieaff.com/#/?code=CpJKZicY",
-    "startingPrice": 20,
-    "currency": "CNY",
-    "billingCycle": "月付",
-    "effectiveMonthlyPrice": 20,
-    "plans": [
-      {
-        "name": "跨界基础包",
-        "price": 20,
-        "cycle": "月付",
-        "bandwidthGB": 120,
-        "effectiveMonthlyGB": 120,
-        "pricePerGB": 0.167,
-        "note": "全专线架构，办公首选"
-      },
-      {
-        "name": "跨界商务包",
-        "price": 40,
-        "cycle": "月付",
-        "bandwidthGB": 280,
-        "effectiveMonthlyGB": 280,
-        "pricePerGB": 0.143,
-        "note": "跨境电商多任务"
-      },
-      {
-        "name": "跨界年付包",
-        "price": 220,
-        "cycle": "年付",
-        "bandwidthGB": 1600,
-        "effectiveMonthlyGB": 133.3,
-        "pricePerGB": 0.137,
-        "note": "年付更超值"
-      }
-    ],
-    "protocols": [
-      "Shadowsocks",
-      "Trojan"
-    ],
-    "regions": [
-      "香港",
-      "台湾",
-      "日本",
-      "新加坡",
-      "美国",
-      "英国",
-      "德国"
-    ],
-    "lineType": "全专线架构",
-    "sla": "99.6%",
-    "deviceLimit": "3台设备",
-    "aiSupport": [
-      "ChatGPT",
-      "Claude",
-      "Gemini"
-    ],
-    "streamingSupport": [
-      "Netflix",
-      "Disney+",
-      "YouTube 4K"
-    ],
-    "advantages": [
-      "全专线架构保障晚高峰网络高可用",
-      "120GB流量与20元月付取得优良平衡",
-      "支持多客户端快速扫码导入",
-      "外贸与办公网站访问稳定顺畅"
-    ],
-    "disadvantages": [
-      "暂无超大流量500G以上单一套餐",
-      "工单服务时间为早9点至晚10点"
-    ],
-    "suitableFor": [
-      "跨境电商、多任务跨设备办公人员",
-      "追求极简轻量连接的用户",
-      "日常学术科研工作者"
-    ],
-    "sources": [
-      "jiediantuijian.shop 公开数据",
-      "编辑团队实机连通测试",
-      "官方运维频道"
-    ],
-    "lastVerified": "2026-03-01",
-    "testStatus": "tested",
-    "overallScore": 9.3,
-    "valueScore": 9.1,
-    "stabilityScore": 9.5,
-    "speedScore": 9.4
-  },
-  {
-    "order": 9,
     "id": "invisible",
     "name": "隐形人",
     "slug": "invisible",
@@ -875,10 +591,294 @@
     ],
     "lastVerified": "2026-03-01",
     "testStatus": "tested",
-    "overallScore": 9.25,
+    "overallScore": 9.42,
     "valueScore": 9.2,
     "stabilityScore": 9.9,
     "speedScore": 9.8
+  },
+  {
+    "order": 7,
+    "id": "flashleap",
+    "name": "闪跃 FlashLeap",
+    "slug": "flashleap",
+    "tagline": "IPLC纯专线 · 150GB外服电竞与低延迟生产力首选",
+    "description": "闪跃 FlashLeap 全线采用高标准IPLC纯专线架构，针对外服游戏联机、Steam以及跨国视频会议进行了极致端到端延迟调优，晚高峰极度稳定。",
+    "officialUrl": "https://vip02.flashleapaff.com/#/?code=8ZIV6HQ3",
+    "affiliateUrl": "https://vip02.flashleapaff.com/#/?code=8ZIV6HQ3",
+    "coupon": "shanyue",
+    "startingPrice": 24,
+    "currency": "CNY",
+    "billingCycle": "月付",
+    "effectiveMonthlyPrice": 24,
+    "plans": [
+      {
+        "name": "闪跃专线月付",
+        "price": 24,
+        "cycle": "月付",
+        "bandwidthGB": 150,
+        "effectiveMonthlyGB": 150,
+        "pricePerGB": 0.16,
+        "note": "纯IPLC低延迟专线"
+      },
+      {
+        "name": "闪跃疾速季付",
+        "price": 68,
+        "cycle": "季付",
+        "bandwidthGB": 500,
+        "effectiveMonthlyGB": 166.6,
+        "pricePerGB": 0.136,
+        "note": "电竞级路由保障"
+      },
+      {
+        "name": "闪跃至尊年付",
+        "price": 258,
+        "cycle": "年付",
+        "bandwidthGB": 2200,
+        "effectiveMonthlyGB": 183.3,
+        "pricePerGB": 0.117,
+        "note": "年付立省优惠"
+      }
+    ],
+    "protocols": [
+      "Shadowsocks",
+      "Trojan"
+    ],
+    "regions": [
+      "香港",
+      "台湾",
+      "日本",
+      "新加坡",
+      "美国",
+      "韩国"
+    ],
+    "lineType": "IPLC纯专线",
+    "sla": "99.8%",
+    "deviceLimit": "4台设备",
+    "aiSupport": [
+      "ChatGPT",
+      "Claude",
+      "Gemini",
+      "Cursor"
+    ],
+    "streamingSupport": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K",
+      "Twitch 1080p60"
+    ],
+    "advantages": [
+      "纯IPLC物理专线，延迟抖动与丢包率极低",
+      "优惠码 shanyue 享受专属立减优惠",
+      "外服游戏（Steam/Apex/LOL）联机专线优化",
+      "150GB起步流量，单GB仅约0.16元"
+    ],
+    "disadvantages": [
+      "节点主要覆盖主流地区，冷门偏远地区较少",
+      "无10元以下超小包"
+    ],
+    "suitableFor": [
+      "外服联机游戏玩家与游戏主播",
+      "对延迟与晚高峰稳定性极度敏感者",
+      "外贸办公人员"
+    ],
+    "sources": [
+      "jiediantuijian.shop 公开数据",
+      "游戏延迟与ping监控实测",
+      "官方服务状态页"
+    ],
+    "lastVerified": "2026-03-01",
+    "testStatus": "tested",
+    "overallScore": 9.38,
+    "valueScore": 9.1,
+    "stabilityScore": 9.8,
+    "speedScore": 9.7
+  },
+  {
+    "order": 8,
+    "id": "firefly",
+    "name": "萤火虫 (Firefly)",
+    "slug": "firefly",
+    "tagline": "8元平价优质线路 · 60GB轻量入门神器",
+    "description": "萤火虫（Firefly机场）专注轻量低门槛体验，月付仅需¥8即可拥有60GB优质线路流量。提供专属优惠码，适合预算有限的学生党或作为备用梯子。",
+    "officialUrl": "https://vip02.fireflyaff.com/#/?code=uTKLkAyC",
+    "affiliateUrl": "https://vip02.fireflyaff.com/#/?code=uTKLkAyC",
+    "coupon": "firefly",
+    "startingPrice": 8,
+    "currency": "CNY",
+    "billingCycle": "月付",
+    "effectiveMonthlyPrice": 8,
+    "plans": [
+      {
+        "name": "微光月付款",
+        "price": 8,
+        "cycle": "月付",
+        "bandwidthGB": 60,
+        "effectiveMonthlyGB": 60,
+        "pricePerGB": 0.133,
+        "note": "超低门槛，试错成本低"
+      },
+      {
+        "name": "萤火进阶款",
+        "price": 16,
+        "cycle": "月付",
+        "bandwidthGB": 150,
+        "effectiveMonthlyGB": 150,
+        "pricePerGB": 0.107,
+        "note": "日常看视频优选"
+      },
+      {
+        "name": "流光年付款",
+        "price": 80,
+        "cycle": "年付",
+        "bandwidthGB": 900,
+        "effectiveMonthlyGB": 75,
+        "pricePerGB": 0.089,
+        "note": "年付备用神器"
+      }
+    ],
+    "protocols": [
+      "Shadowsocks",
+      "Trojan"
+    ],
+    "regions": [
+      "香港",
+      "台湾",
+      "日本",
+      "新加坡",
+      "美国"
+    ],
+    "lineType": "优质线路",
+    "sla": "99.2%",
+    "deviceLimit": "2台设备",
+    "aiSupport": [
+      "ChatGPT",
+      "Gemini"
+    ],
+    "streamingSupport": [
+      "YouTube 4K",
+      "Netflix（基础）"
+    ],
+    "advantages": [
+      "¥8/月超低起步价，试错成本极低",
+      "专属折扣券 firefly 额外优惠",
+      "轻量按需计费，支持随时退改续",
+      "作为第二备用梯子非常划算"
+    ],
+    "disadvantages": [
+      "基础套餐60GB较小，不适合大文件重度下载",
+      "极端敏感时期公网中转节点需留意通知更新"
+    ],
+    "suitableFor": [
+      "轻度上网、查阅资料与日常社交交流",
+      "预算有限的学生群体",
+      "寻找廉价备用梯子的用户"
+    ],
+    "sources": [
+      "jiediantuijian.shop 公开数据",
+      "编辑团队网络抽测",
+      "官方优惠公告"
+    ],
+    "lastVerified": "2026-03-01",
+    "testStatus": "tested",
+    "overallScore": 9.35,
+    "valueScore": 9.6,
+    "stabilityScore": 9,
+    "speedScore": 9.1
+  },
+  {
+    "order": 9,
+    "id": "kuajie",
+    "name": "跨界 (跨界云)",
+    "slug": "kuajie",
+    "tagline": "全专线架构 · 120GB跨境多任务办公首选",
+    "description": "跨界云采用全专线网络架构，为外贸电商、跨国会议以及多任务跨设备办公用户量身定制。月付20元配额120GB流量，兼顾成本与专线稳定性。",
+    "officialUrl": "https://vip02.kuajieaff.com/#/?code=CpJKZicY",
+    "affiliateUrl": "https://vip02.kuajieaff.com/#/?code=CpJKZicY",
+    "startingPrice": 20,
+    "currency": "CNY",
+    "billingCycle": "月付",
+    "effectiveMonthlyPrice": 20,
+    "plans": [
+      {
+        "name": "跨界基础包",
+        "price": 20,
+        "cycle": "月付",
+        "bandwidthGB": 120,
+        "effectiveMonthlyGB": 120,
+        "pricePerGB": 0.167,
+        "note": "全专线架构，办公首选"
+      },
+      {
+        "name": "跨界商务包",
+        "price": 40,
+        "cycle": "月付",
+        "bandwidthGB": 280,
+        "effectiveMonthlyGB": 280,
+        "pricePerGB": 0.143,
+        "note": "跨境电商多任务"
+      },
+      {
+        "name": "跨界年付包",
+        "price": 220,
+        "cycle": "年付",
+        "bandwidthGB": 1600,
+        "effectiveMonthlyGB": 133.3,
+        "pricePerGB": 0.137,
+        "note": "年付更超值"
+      }
+    ],
+    "protocols": [
+      "Shadowsocks",
+      "Trojan"
+    ],
+    "regions": [
+      "香港",
+      "台湾",
+      "日本",
+      "新加坡",
+      "美国",
+      "英国",
+      "德国"
+    ],
+    "lineType": "全专线架构",
+    "sla": "99.6%",
+    "deviceLimit": "3台设备",
+    "aiSupport": [
+      "ChatGPT",
+      "Claude",
+      "Gemini"
+    ],
+    "streamingSupport": [
+      "Netflix",
+      "Disney+",
+      "YouTube 4K"
+    ],
+    "advantages": [
+      "全专线架构保障晚高峰网络高可用",
+      "120GB流量与20元月付取得优良平衡",
+      "支持多客户端快速扫码导入",
+      "外贸与办公网站访问稳定顺畅"
+    ],
+    "disadvantages": [
+      "暂无超大流量500G以上单一套餐",
+      "工单服务时间为早9点至晚10点"
+    ],
+    "suitableFor": [
+      "跨境电商、多任务跨设备办公人员",
+      "追求极简轻量连接的用户",
+      "日常学术科研工作者"
+    ],
+    "sources": [
+      "jiediantuijian.shop 公开数据",
+      "编辑团队实机连通测试",
+      "官方运维频道"
+    ],
+    "lastVerified": "2026-03-01",
+    "testStatus": "tested",
+    "overallScore": 9.3,
+    "valueScore": 9.1,
+    "stabilityScore": 9.5,
+    "speedScore": 9.4
   },
   {
     "order": 10,
