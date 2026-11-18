@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mac苹果电脑翻墙客户端教程 - Clash Verge与Sing-box指南 - shidatizi.co</title>
-  <meta name="description" content="专为苹果Mac电脑（M1/M2/M3芯片与Intel机型）打造的Clash Verge Rev客户端配置指南。图文拆解订阅导入、增强模式、终端终端命令行代理与DNS优化。">
-  <meta name="keywords" content="Mac翻墙教程, Clash Verge Mac, macOS科学上网, 苹果电脑梯子, Mac代理软件">
+  <title>Mac苹果电脑翻墙客户端配置教程 - Clash Verge Rev Mac版指南 - shidatizi.co</title>
+  <meta name="description" content="专为macOS用户打造的Clash Verge Rev配置指南。针对Apple Silicon M1/M2/M3/M4芯片原生优化，涵盖增强模式、终端代理与菜单栏常驻调优。">
+  <meta name="keywords" content="Mac梯子教程, macOS翻墙, Clash Verge Mac, 苹果电脑翻墙, M芯片代理软件, 终端代理配置">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://shidatizi.co/guides/macos/">
   
   <!-- Open Graph -->
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Mac苹果电脑翻墙客户端教程 - Clash Verge与Sing-box指南 - shidatizi.co">
-  <meta property="og:description" content="专为苹果Mac电脑（M1/M2/M3芯片与Intel机型）打造的Clash Verge Rev客户端配置指南。图文拆解订阅导入、增强模式、终端终端命令行代理与DNS优化。">
+  <meta property="og:title" content="Mac苹果电脑翻墙客户端配置教程 - Clash Verge Rev Mac版指南 - shidatizi.co">
+  <meta property="og:description" content="专为macOS用户打造的Clash Verge Rev配置指南。针对Apple Silicon M1/M2/M3/M4芯片原生优化，涵盖增强模式、终端代理与菜单栏常驻调优。">
   <meta property="og:url" content="https://shidatizi.co/guides/macos/">
   <meta property="og:site_name" content="十代梯子 · shidatizi.co">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mac苹果电脑翻墙客户端教程 - Clash Verge与Sing-box指南 - shidatizi.co">
-  <meta name="twitter:description" content="专为苹果Mac电脑（M1/M2/M3芯片与Intel机型）打造的Clash Verge Rev客户端配置指南。图文拆解订阅导入、增强模式、终端终端命令行代理与DNS优化。">
+  <meta name="twitter:title" content="Mac苹果电脑翻墙客户端配置教程 - Clash Verge Rev Mac版指南 - shidatizi.co">
+  <meta name="twitter:description" content="专为macOS用户打造的Clash Verge Rev配置指南。针对Apple Silicon M1/M2/M3/M4芯片原生优化，涵盖增强模式、终端代理与菜单栏常驻调优。">
   
   <!-- 原生CSS规范：严格使用相对路径 -->
   <link rel="stylesheet" href="../../css/style.css">
@@ -52,14 +52,35 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "使用教程",
+        "name": "教程中心",
         "item": "https://shidatizi.co/guides/"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "macOS系统翻墙客户端配置与优化教程",
+        "name": "macOS 苹果电脑 Clash Verge Rev 配置与 M 芯片优化指南",
         "item": "https://shidatizi.co/guides/macos/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "macOS 苹果电脑 Clash Verge Rev 配置与 M 芯片优化指南",
+    "description": "专为macOS用户打造的Clash Verge Rev配置指南。针对Apple Silicon M1/M2/M3/M4芯片原生优化，涵盖增强模式、终端代理与菜单栏常驻调优。",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "CNY",
+      "value": "0"
+    },
+    "tool": [
+      {
+        "@type": "HowToTool",
+        "name": "翻墙客户端 (Clash / Sing-box / Shadowrocket)"
+      },
+      {
+        "@type": "HowToTool",
+        "name": "高速专线机场订阅链接"
       }
     ]
   }
@@ -114,93 +135,83 @@
   <!-- 主体内容 -->
   <main id="main-content">
     
-      <div class="container" style="padding-top:2rem;">
-        <nav class="breadcrumbs" aria-label="面包屑导航">
-          <a href="../../index.html">首页</a>
-          <span class="breadcrumbs-separator">/</span>
-          <a href="../index.html">使用教程</a>
-          <span class="breadcrumbs-separator">/</span><span>macOS系统翻墙客户端配置与优化教程</span>
-        </nav>
+      <article class="article-content">
+        <header class="article-header">
+          <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.75rem;">
+            <span class="status-badge" style="background:#e0f2fe; color:#0369a1; font-weight:700;">macOS</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">更新日期：2026-03-01 · 预计阅读：7 分钟</span>
+          </div>
+          <h1 class="article-title">macOS 苹果电脑 Clash Verge Rev 配置与 M 芯片优化指南</h1>
+          <p class="article-lead" style="font-size:1.05rem; color:var(--text-muted); line-height:1.6; border-left:4px solid var(--primary); padding-left:1rem; margin-top:0.75rem;">
+            专为macOS用户打造的Clash Verge Rev配置指南。针对Apple Silicon M1/M2/M3/M4芯片原生优化，涵盖增强模式、终端代理与菜单栏常驻调优。
+          </p>
+        </header>
 
-        <div class="content-layout">
-          <article class="prose">
-            <h1>macOS系统翻墙客户端配置与优化教程</h1>
+        <div class="article-body">
+          
+      <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main); font-weight:500;">
+        随着 ClashX 系列进入维护期，<strong>Clash Verge Rev (Mac 版)</strong> 已成为 macOS 平台上的最佳接任者。
+        它原生编译支持 Apple Silicon (M1/M2/M3/M4 系列芯片) 与 Intel 架构，界面优美，完美融入 macOS 视窗设计。
+      </p>
 
-            <div class="article-meta">
-              <span>📅 更新时间：2026年3月</span>
-              <span>💻 适配系统：MACOS</span>
-              <span>✅ 校验状态：实机测试通过</span>
-            </div>
+      <h2>一、软件下载与权限授予</h2>
+      <ol style="padding-left:1.25rem; line-height:1.8;">
+        <li>访问官方 Releases 页面，M 系列芯片请下载 <code>Clash.Verge_aarch64.dmg</code>；Intel 芯片下载 <code>Clash.Verge_x64.dmg</code>；</li>
+        <li>打开 DMG 镜像包，将 Clash Verge 图标拖拽到 <strong>Applications (应用程序)</strong> 文件夹；</li>
+        <li>若首次打开提示“无法打开，因为无法验证开发者”，请前往 <strong>系统设置 → 隐私与安全性</strong>，在底部点击“仍要打开”。</li>
+      </ol>
 
-            
-        <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main); font-weight:500;">
-          对于搭载 Apple Silicon (M1/M2/M3/M4) 系列芯片或 Intel 处理器的 macOS 系统，
-          <strong>Clash Verge Rev (Mac版本)</strong> 是目前体验最优秀的客户端，完美兼容系统暗黑模式并具备低功耗特性。
+      <h2>二、导入配置与开启系统代理</h2>
+      <ol style="padding-left:1.25rem; line-height:1.8;">
+        <li>启动软件后，在左侧点击 <strong>「订阅」</strong>，粘贴机场提供的 Clash 订阅链接并保存；</li>
+        <li>右键激活刚下载的配置，在左侧切换到 <strong>「代理」</strong> 面板，展开节点分组挑选节点；</li>
+        <li>在左下角打开 <strong>「系统代理」</strong> 开关，状态变为绿色即代表已成功接管 Safari、Chrome 等浏览器的出海流量。</li>
+      </ol>
+
+      <h2>三、macOS 开发者专属：终端 Terminal 走代理</h2>
+      <p>日常使用 <code>git clone</code>、<code>brew install</code> 或 <code>npm install</code> 经常遇到 GitHub 连不上的问题。可在 <code>~/.zshrc</code> 中添加以下快捷别名：</p>
+      <pre style="background:#1e293b; color:#f8fafc; padding:1rem; border-radius:6px; overflow-x:auto;">
+alias proxy="export http_proxy=http://127.0.0.1:7897 https_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897"
+alias unproxy="unset http_proxy https_proxy all_proxy"
+      </pre>
+      <p>需要终端走代理时，只需输入 <code>proxy</code> 即可秒级开启，输入 <code>unproxy</code> 即可复原。</p>
+    
+          
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; margin-top:2.5rem;">
+        <h3 style="margin-top:0; font-size:1.1rem; color:var(--text-main);">🎯 教程配套高品质专线机场推荐</h3>
+        <p style="font-size:0.875rem; color:var(--text-body); margin-bottom:1rem;">
+          工欲善其事，必先利其器。优秀的客户端需要搭配延迟稳定、抗封锁且具备真实 IEPL/IPLC 专线的节点方能发挥最大效能：
         </p>
-
-        <h2>一、下载与安装指南</h2>
-        <ol style="padding-left:1.25rem; line-height:1.8;">
-          <li>访问 Clash Verge Rev 官方发布页，下载 <code>.dmg</code> 镜像包：
-            <ul>
-              <li>M系列芯片（Apple Silicon）：下载 <code>Clash.Verge_aarch64.dmg</code>；</li>
-              <li>老款 Intel 芯片：下载 <code>Clash.Verge_x64.dmg</code>。</li>
-            </ul>
-          </li>
-          <li>打开 dmg 镜像，将 Clash Verge 图标拖入 <strong>Applications（应用程序）</strong> 文件夹中；</li>
-          <li>若首次打开提示“开发者无法验证”，在系统设置 -> 隐私与安全性 中点击“仍要打开”即可。</li>
-        </ol>
-
-        <h2>二、配置订阅与代理</h2>
-        <ol style="padding-left:1.25rem; line-height:1.8;">
-          <li>打开软件，点击左侧 <strong>订阅 (Profiles)</strong>；</li>
-          <li>粘贴你在 <a href="../../recommend/premium/index.html">专线机场推荐</a> 中获取的订阅链接并点击导入；</li>
-          <li>在 <strong>代理 (Proxies)</strong> 页面选择 <strong>规则 (Rule)</strong> 模式并选定节点；</li>
-          <li>打开“系统代理”开关即可生效。</li>
-        </ol>
-
-        <div class="alert alert-note">
-          <strong>💡 开发者必备：如何给终端 (Terminal/iTerm2) 加速：</strong>
-          默认情况下，Mac 终端命令行中运行 <code>git clone</code> 或 <code>npm install</code> 不会走系统代理。
-          你可以进入 Clash Verge 设置，开启 <strong>Tun 模式</strong>，软件会自动接管系统网络栈；或者在终端中运行导出临时代理变量：
-          <pre><code>export http_proxy="http://127.0.0.1:7897"
-export https_proxy="http://127.0.0.1:7897"</code></pre>
-        </div>
-      
-
-            <h2>五、相关技术与百科延伸阅读</h2>
-            <ul>
-              <li><a href="../../glossary/rules-routing/index.html">百科：什么是规则分流与GEOIP？</a></li>
-              <li><a href="../../glossary/dns-leak-pollution/index.html">百科：什么是DNS污染与SNI阻断？</a></li>
-              <li><a href="../../blog/subconverter-security/index.html">进阶：机场订阅转换安全防泄露使用指南</a></li>
-              <li><a href="../../ranking/overall/index.html">排行榜：查看2026全网综合翻墙机场推荐排名</a></li>
-            </ul>
-          </article>
-
-          <!-- 侧边栏 -->
-          <aside class="sidebar">
-            <div class="widget">
-              <div class="widget-title">💻 全平台配置教程导航</div>
-              <ul class="widget-list">
-                <li><a href="../windows/index.html">💻 Windows 客户端配置教程</a></li>
-                <li><a href="../android/index.html">📱 Android 手机配置教程</a></li>
-                <li><a href="../ios/index.html">🍏 iOS 小火箭 Shadowrocket 教程</a></li>
-                <li><a href="index.html">🖥️ macOS 苹果电脑配置教程</a></li>
-                <li><a href="../index.html">📖 全平台客户端选型中心</a></li>
-              </ul>
-            </div>
-
-            <div class="widget">
-              <div class="widget-title">⭐ 精选机场推荐</div>
-              <ul class="widget-list">
-                <li><a href="../../recommend/budget/index.html">🪙 平价低预算机场推荐</a></li>
-                <li><a href="../../recommend/premium/index.html">💎 高端IEPL专线推荐</a></li>
-                <li><a href="../../recommend/ai/index.html">🤖 ChatGPT/Claude专用节点</a></li>
-                <li><a href="../../compare/index.html">⚖️ 在线横向对比工具</a></li>
-              </ul>
-            </div>
-          </aside>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem;">
+          <div style="background:#fff; border:1px solid var(--border-color); border-radius:6px; padding:0.875rem;">
+            <div style="font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">微风网络 Breezenet</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;">起步¥8/月 · 200GB超大流量 · VLESS/专线支持</div>
+            <a href="../../review/breezenet/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">查看微风网络实测评测 →</a>
+          </div>
+          <div style="background:#fff; border:1px solid var(--border-color); border-radius:6px; padding:0.875rem;">
+            <div style="font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">隐形人</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;">纯IEPL专线 · 144GB无视晚高峰 · 4K与AI原生解锁</div>
+            <a href="../../review/invisible/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">查看隐形人深度评测 →</a>
+          </div>
+          <div style="background:#fff; border:1px solid var(--border-color); border-radius:6px; padding:0.875rem;">
+            <div style="font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">无忧 (无忧链接)</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;">IPLC专线 · ¥19/月百吉字节 · 券码立减</div>
+            <a href="../../review/wuyou/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">查看无忧专线评测 →</a>
+          </div>
         </div>
       </div>
+    
+        </div>
+
+        <footer style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <a href="../index.html" style="font-weight:600; color:var(--primary);">
+            ← 返回全平台教程中心
+          </a>
+          <a href="../../ranking/overall/index.html" class="btn btn-primary btn-sm">
+            查看2026优质机场排行榜 🏆
+          </a>
+        </footer>
+      </article>
     
   </main>
 

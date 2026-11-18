@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>什么是DNS污染与SNI阻断？ - 防火墙封锁原理百科 - shidatizi.co</title>
-  <meta name="description" content="通俗易懂地剖析长城防火墙（GFW）的两大核心封锁机制：DNS缓存污染与TLS SNI字段阻断。教你如何开启DoH加密与Fake-IP彻底防封锁。">
-  <meta name="keywords" content="DNS污染, SNI阻断, GFW原理, DoH加密, Fake-IP, DNS泄漏, 域名劫持">
+  <title>什么是DNS污染与阻断？ - 翻墙术语百科 - shidatizi.co</title>
+  <meta name="description" content="解析GFW防火墙实施域名阻断的核心手段：DNS投毒污染、明文UDP劫持与SNI阻断的底层网络原理与防范手段。">
+  <meta name="keywords" content="DNS污染原理, DNS投毒, 假IP注入, SNI阻断, 加密DNS防污染">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://shidatizi.co/glossary/dns-leak-pollution/">
   
   <!-- Open Graph -->
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="什么是DNS污染与SNI阻断？ - 防火墙封锁原理百科 - shidatizi.co">
-  <meta property="og:description" content="通俗易懂地剖析长城防火墙（GFW）的两大核心封锁机制：DNS缓存污染与TLS SNI字段阻断。教你如何开启DoH加密与Fake-IP彻底防封锁。">
+  <meta property="og:title" content="什么是DNS污染与阻断？ - 翻墙术语百科 - shidatizi.co">
+  <meta property="og:description" content="解析GFW防火墙实施域名阻断的核心手段：DNS投毒污染、明文UDP劫持与SNI阻断的底层网络原理与防范手段。">
   <meta property="og:url" content="https://shidatizi.co/glossary/dns-leak-pollution/">
   <meta property="og:site_name" content="十代梯子 · shidatizi.co">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="什么是DNS污染与SNI阻断？ - 防火墙封锁原理百科 - shidatizi.co">
-  <meta name="twitter:description" content="通俗易懂地剖析长城防火墙（GFW）的两大核心封锁机制：DNS缓存污染与TLS SNI字段阻断。教你如何开启DoH加密与Fake-IP彻底防封锁。">
+  <meta name="twitter:title" content="什么是DNS污染与阻断？ - 翻墙术语百科 - shidatizi.co">
+  <meta name="twitter:description" content="解析GFW防火墙实施域名阻断的核心手段：DNS投毒污染、明文UDP劫持与SNI阻断的底层网络原理与防范手段。">
   
   <!-- 原生CSS规范：严格使用相对路径 -->
   <link rel="stylesheet" href="../../css/style.css">
@@ -58,7 +58,7 @@
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "百科：DNS污染与SNI阻断原理及解决办法",
+        "name": "什么是DNS污染与阻断？",
         "item": "https://shidatizi.co/glossary/dns-leak-pollution/"
       }
     ]
@@ -120,12 +120,12 @@
           <span class="breadcrumbs-separator">/</span>
           <a href="../index.html">术语百科</a>
           <span class="breadcrumbs-separator">/</span>
-          <span>百科：DNS污染与SNI阻断原理及解决办法</span>
+          <span>什么是DNS污染与阻断？</span>
         </nav>
 
         <div class="content-layout">
           <article class="prose">
-            <h1>百科：DNS污染与SNI阻断原理及解决办法</h1>
+            <h1>什么是DNS污染与阻断？</h1>
 
             <div class="article-meta">
               <span>📚 知识分类：网络代理基础架构</span>
@@ -134,38 +134,17 @@
             </div>
 
             
-        <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main); font-weight:500;">
-          很多新手在翻墙过程中会遇到“明明节点连接正常，但部分网页就是解析失败”的情况，
-          这通常是由于触发了 GFW 的两大核心审查机制：<strong>DNS 污染（DNS Cache Poisoning）</strong> 与 
-          <strong>SNI 阻断（Server Name Indication Block）</strong>。
-        </p>
-
-        <h2>一、什么是 DNS 污染？</h2>
-        <p>
-          互联网通过域名访问网站时，首先需要向 DNS 服务器询问该域名对应的真实服务器 IP。
-          传统的 DNS 查询基于明文 UDP 53 端口。当你在国内宽带下查询未加密的海外受限域名（如 <code>twitter.com</code>）时，
-          GFW 会在权威服务器应答之前抢先返回一个虚假的、不可达的错误 IP，使你的电脑连向死胡同。这就是典型的 DNS 污染。
-        </p>
-
-        <h2>二、什么是 SNI 阻断？</h2>
-        <p>
-          在建立 HTTPS 安全加密连接前，客户端发送的第一个 <code>Client Hello</code> 握手数据包中包含了一个名为 <strong>SNI（服务器名称指示）</strong> 的明文字段，用来告诉服务器你想访问哪个具体域名。
-          防火墙实时审查这个明文字段，一旦发现命中受限黑名单，便会立即伪造 TCP RST 重置包强行掐断连接。
-        </p>
-
-        <h2>三、现代客户端如何彻底解决？</h2>
-        <ol style="padding-left:1.25rem; line-height:1.8;">
-          <li><strong>Fake-IP 机制：</strong>Clash 等客户端在收到本地 DNS 请求时，不经过任何公网查询，而是直接在本地生成一个假IP（如 <code>198.18.0.1</code>）立即返回给浏览器。真实域名被打包加密后发送给境外专线节点，由境外节点在远端完成无污染解析；</li>
-          <li><strong>DoH / DoT 加密 DNS：</strong>使用 DNS over HTTPS 技术，将 DNS 请求装进 TLS 加密通道中，防火墙无法窥视查询内容；</li>
-          <li><strong>ECH（加密客户端问候）：</strong>新一代 TLS 规范将 SNI 字段全面加密，从根本上终结明文审查拦截。</li>
-        </ol>
+        <p><strong>DNS 污染 (DNS Cache Poisoning，又称 DNS 投毒)</strong> 是网络审查系统在公网国际关口局实施的主要技术手段之一。</p>
+        <h2>一、工作原理</h2>
+        <p>当用户的电脑向海外公共 DNS 服务器（如 8.8.8.8）发送未经加密的 UDP 53 端口查询请求时，防火墙的旁路监听设备会抢在真正的海外服务器之前，向用户伪造返回一个错误的虚假 IP 地址（通常指向不可达或空地址），导致用户浏览器无法建立正确连接。</p>
       
 
             <h2>三、相关词条与推荐阅读</h2>
             <ul>
               <li><a href="../../ranking/overall/index.html">查看2026年翻墙机场全网综合排行榜</a></li>
               <li><a href="../../recommend/premium/index.html">查看高端IEPL/IPLC专线机场推荐专题</a></li>
-              <li><a href="../../guides/windows/index.html">Windows客户端Clash Verge配置指引</a></li>
+              <li><a href="../../compare/index.html">使用机场横向参数比对工具</a></li>
+              <li><a href="../../guides/index.html">返回客户端新手教程中心</a></li>
             </ul>
           </article>
 
@@ -175,25 +154,25 @@
               <div class="widget-title">📚 核心术语百科词条</div>
               <ul class="widget-list">
                 
-                  <li><a href="../iplc-iepl/index.html">百科：IPLC与IEPL专线技术详解</a></li>
+                  <li><a href="../iplc-iepl/index.html">什么是IPLC与IEPL专线？</a></li>
                 
-                  <li><a href="../node-multiplier/index.html">百科：机场节点倍率与实际流量折算</a></li>
+                  <li><a href="../node-multiplier/index.html">什么是节点倍率？</a></li>
                 
-                  <li><a href="../bgp-tunnel/index.html">百科：BGP入口中转与隧道加速原理</a></li>
+                  <li><a href="../bgp-tunnel/index.html">什么是BGP中转与隧道？</a></li>
                 
-                  <li><a href="../rules-routing/index.html">百科：客户端规则分流与代理模式</a></li>
+                  <li><a href="../rules-routing/index.html">什么是规则分流与GEOIP？</a></li>
                 
-                  <li><a href="index.html">百科：DNS污染与SNI阻断原理及解决办法</a></li>
+                  <li><a href="index.html">什么是DNS污染与阻断？</a></li>
                 
               </ul>
             </div>
 
             <div class="widget">
-              <div class="widget-title">⭐ 精选专题推荐</div>
+              <div class="widget-title">💡 选型避坑专题</div>
               <ul class="widget-list">
-                <li><a href="../../recommend/budget/index.html">🪙 平价低预算机场推荐</a></li>
-                <li><a href="../../recommend/premium/index.html">💎 高端专线机场精选</a></li>
-                <li><a href="../../compare/index.html">⚖️ 在线横向对比工具</a></li>
+                <li><a href="../../blog/cheap-airport-traps/index.html">为什么低价机场总容易跑路？</a></li>
+                <li><a href="../../blog/protocol-comparison/index.html">Shadowsocks与Trojan协议深度对比</a></li>
+                <li><a href="../../blog/ai-airport-guide/index.html">ChatGPT与Claude专用节点选型</a></li>
               </ul>
             </div>
           </aside>

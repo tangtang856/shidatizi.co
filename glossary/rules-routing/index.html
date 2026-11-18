@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>什么是规则分流与GEOIP？ - 客户端代理模式百科 - shidatizi.co</title>
-  <meta name="description" content="全面解析Clash与Shadowrocket客户端中的规则模式（Rule）、全局模式（Global）与直连模式（Direct）。了解国内直连与国外走代理的智能分流原理。">
-  <meta name="keywords" content="规则分流, GEOIP, Clash分流模式, 全局模式区别, 代理规则, 智能分流">
+  <title>什么是规则分流与GEOIP？ - 翻墙术语百科 - shidatizi.co</title>
+  <meta name="description" content="详细解释现代代理客户端的规则分流、GEOIP数据库与域名分流机制。告别全局代理导致的国内网站访问变慢与定位错误。">
+  <meta name="keywords" content="规则分流定义, GEOIP解释, 分流模式, 国内直连国外代理, 客户端规则">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://shidatizi.co/glossary/rules-routing/">
   
   <!-- Open Graph -->
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="什么是规则分流与GEOIP？ - 客户端代理模式百科 - shidatizi.co">
-  <meta property="og:description" content="全面解析Clash与Shadowrocket客户端中的规则模式（Rule）、全局模式（Global）与直连模式（Direct）。了解国内直连与国外走代理的智能分流原理。">
+  <meta property="og:title" content="什么是规则分流与GEOIP？ - 翻墙术语百科 - shidatizi.co">
+  <meta property="og:description" content="详细解释现代代理客户端的规则分流、GEOIP数据库与域名分流机制。告别全局代理导致的国内网站访问变慢与定位错误。">
   <meta property="og:url" content="https://shidatizi.co/glossary/rules-routing/">
   <meta property="og:site_name" content="十代梯子 · shidatizi.co">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="什么是规则分流与GEOIP？ - 客户端代理模式百科 - shidatizi.co">
-  <meta name="twitter:description" content="全面解析Clash与Shadowrocket客户端中的规则模式（Rule）、全局模式（Global）与直连模式（Direct）。了解国内直连与国外走代理的智能分流原理。">
+  <meta name="twitter:title" content="什么是规则分流与GEOIP？ - 翻墙术语百科 - shidatizi.co">
+  <meta name="twitter:description" content="详细解释现代代理客户端的规则分流、GEOIP数据库与域名分流机制。告别全局代理导致的国内网站访问变慢与定位错误。">
   
   <!-- 原生CSS规范：严格使用相对路径 -->
   <link rel="stylesheet" href="../../css/style.css">
@@ -58,7 +58,7 @@
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "百科：客户端规则分流与代理模式",
+        "name": "什么是规则分流与GEOIP？",
         "item": "https://shidatizi.co/glossary/rules-routing/"
       }
     ]
@@ -120,12 +120,12 @@
           <span class="breadcrumbs-separator">/</span>
           <a href="../index.html">术语百科</a>
           <span class="breadcrumbs-separator">/</span>
-          <span>百科：客户端规则分流与代理模式</span>
+          <span>什么是规则分流与GEOIP？</span>
         </nav>
 
         <div class="content-layout">
           <article class="prose">
-            <h1>百科：客户端规则分流与代理模式</h1>
+            <h1>什么是规则分流与GEOIP？</h1>
 
             <div class="article-meta">
               <span>📚 知识分类：网络代理基础架构</span>
@@ -134,31 +134,21 @@
             </div>
 
             
-        <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main); font-weight:500;">
-          <strong>规则分流（Rule-based Routing）</strong> 
-          是现代翻墙客户端最核心的智能化技术。它允许客户端根据目标网站的域名、IP地理位置（GEOIP）或协议端口，
-          自动决定流量是“直接连接（Direct）”还是“通过代理服务器传输（Proxy）”。
-        </p>
-
-        <h2>一、三种常见代理模式对比</h2>
+        <p><strong>规则分流</strong> 是指代理客户端（如 Clash、Shadowrocket、Sing-box）根据数据包的目标域名或目标 IP 地址，自动决定其流向的智能分流系统。</p>
+        <h2>一、三种常见工作模式</h2>
         <ul>
-          <li><strong>规则模式 (Rule / Config)：</strong>【强烈推荐】系统自动判断：访问百度、微信、淘宝等国内网站自动走本地直连，不消耗机场流量且网速飞快；访问 Google、YouTube、GitHub 时自动走海外代理节点；</li>
-          <li><strong>全局模式 (Global)：</strong>电脑或手机上的所有流量无论访问国内外，均强制走境外节点。会导致国内网页加载极其缓慢，甚至微信被提示异地登录风险；</li>
-          <li><strong>直连模式 (Direct)：</strong>相当于关闭代理，所有网络请求均直连，海外受限网站无法打开。</li>
+          <li><strong>规则模式 (Rule)：</strong>国内流量直连，海外受限网站走代理节点；</li>
+          <li><strong>全局模式 (Global)：</strong>电脑或手机所有网络连接强制全部走代理；</li>
+          <li><strong>直连模式 (Direct)：</strong>所有流量不走代理，直接使用本地宽带访问。</li>
         </ul>
-
-        <h2>二、GEOIP 数据库的工作机制</h2>
-        <p>
-          客户端内置了 MaxMind 或开源的 GeoIP 数据库。当用户请求一个目标IP时，内核比对数据库中的大陆IP段（CN IP）。
-          凡归属于中国大陆的IP一律放行直连，其余流量则走选定的代理节点，做到了“无感、智能、省流量”。
-        </p>
       
 
             <h2>三、相关词条与推荐阅读</h2>
             <ul>
               <li><a href="../../ranking/overall/index.html">查看2026年翻墙机场全网综合排行榜</a></li>
               <li><a href="../../recommend/premium/index.html">查看高端IEPL/IPLC专线机场推荐专题</a></li>
-              <li><a href="../../guides/windows/index.html">Windows客户端Clash Verge配置指引</a></li>
+              <li><a href="../../compare/index.html">使用机场横向参数比对工具</a></li>
+              <li><a href="../../guides/index.html">返回客户端新手教程中心</a></li>
             </ul>
           </article>
 
@@ -168,25 +158,25 @@
               <div class="widget-title">📚 核心术语百科词条</div>
               <ul class="widget-list">
                 
-                  <li><a href="../iplc-iepl/index.html">百科：IPLC与IEPL专线技术详解</a></li>
+                  <li><a href="../iplc-iepl/index.html">什么是IPLC与IEPL专线？</a></li>
                 
-                  <li><a href="../node-multiplier/index.html">百科：机场节点倍率与实际流量折算</a></li>
+                  <li><a href="../node-multiplier/index.html">什么是节点倍率？</a></li>
                 
-                  <li><a href="../bgp-tunnel/index.html">百科：BGP入口中转与隧道加速原理</a></li>
+                  <li><a href="../bgp-tunnel/index.html">什么是BGP中转与隧道？</a></li>
                 
-                  <li><a href="index.html">百科：客户端规则分流与代理模式</a></li>
+                  <li><a href="index.html">什么是规则分流与GEOIP？</a></li>
                 
-                  <li><a href="../dns-leak-pollution/index.html">百科：DNS污染与SNI阻断原理及解决办法</a></li>
+                  <li><a href="../dns-leak-pollution/index.html">什么是DNS污染与阻断？</a></li>
                 
               </ul>
             </div>
 
             <div class="widget">
-              <div class="widget-title">⭐ 精选专题推荐</div>
+              <div class="widget-title">💡 选型避坑专题</div>
               <ul class="widget-list">
-                <li><a href="../../recommend/budget/index.html">🪙 平价低预算机场推荐</a></li>
-                <li><a href="../../recommend/premium/index.html">💎 高端专线机场精选</a></li>
-                <li><a href="../../compare/index.html">⚖️ 在线横向对比工具</a></li>
+                <li><a href="../../blog/cheap-airport-traps/index.html">为什么低价机场总容易跑路？</a></li>
+                <li><a href="../../blog/protocol-comparison/index.html">Shadowsocks与Trojan协议深度对比</a></li>
+                <li><a href="../../blog/ai-airport-guide/index.html">ChatGPT与Claude专用节点选型</a></li>
               </ul>
             </div>
           </aside>

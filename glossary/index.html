@@ -116,98 +116,103 @@
       </nav>
 
       <div style="margin-bottom:2rem;">
-        <h1 style="font-size:2.2rem; font-weight:800; color:var(--text-main); margin-bottom:0.75rem;">
+        <h1 style="font-size:1.875rem; font-weight:800; color:var(--text-main); margin-bottom:0.5rem;">
           翻墙与网络代理专业术语百科
         </h1>
-        <p style="font-size:1.05rem; color:var(--text-body); max-width:820px; line-height:1.7;">
-          不懂专线、倍率、分流和DNS污染？十代梯子编写的通俗术语百科，帮你扫清购买与使用路上的所有专业名词障碍。
+        <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">
+          深入浅出解析科学上网中的核心专有名词。打破信息差，看懂商家宣传术语背后的真实技术与物理链路。
         </p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:1.5rem;">
+      <div class="airport-grid" style="grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));">
         
-          <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow-sm);">
+          <div class="airport-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span style="display:inline-block; font-size:0.75rem; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; font-weight:600; margin-bottom:0.6rem;">百科释义</span>
-              <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">
                 <a href="iplc-iepl/index.html" style="color:var(--text-main);">
-                  百科：IPLC与IEPL专线技术详解
+                  什么是IPLC与IEPL专线？
                 </a>
-              </h2>
+              </h3>
               <p style="font-size:0.875rem; color:var(--text-body); line-height:1.6; margin-bottom:1rem;">
-                全面解释IPLC国际私有租用线路与IEPL国际以太网专线的基本概念、工作原理、网络延迟优势与防封锁特性。
+                全面解读IPLC（国际私有租用线路）与IEPL（国际以太网专线）的定义、物理工作原理、与公网中转的区别及优缺点分析。
               </p>
             </div>
-            <div style="border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-              <a href="iplc-iepl/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">阅读词条详解 →</a>
+            <div>
+              <a href="iplc-iepl/index.html" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+                查阅完整词条释义 →
+              </a>
             </div>
           </div>
         
-          <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow-sm);">
+          <div class="airport-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span style="display:inline-block; font-size:0.75rem; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; font-weight:600; margin-bottom:0.6rem;">百科释义</span>
-              <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">
                 <a href="node-multiplier/index.html" style="color:var(--text-main);">
-                  百科：机场节点倍率与实际流量折算
+                  什么是节点倍率？
                 </a>
-              </h2>
+              </h3>
               <p style="font-size:0.875rem; color:var(--text-body); line-height:1.6; margin-bottom:1rem;">
-                详细解释机场节点倍率的计算公式、为什么部分节点是0.1x或3.0x、以及如何识别不良商家利用倍率暗中扣费的套路。
+                通俗解读机场节点倍率的含义与计算公式。教你识别0.1倍率到10倍率背后的扣费逻辑，避免流量被无故扣光。
               </p>
             </div>
-            <div style="border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-              <a href="node-multiplier/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">阅读词条详解 →</a>
+            <div>
+              <a href="node-multiplier/index.html" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+                查阅完整词条释义 →
+              </a>
             </div>
           </div>
         
-          <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow-sm);">
+          <div class="airport-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span style="display:inline-block; font-size:0.75rem; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; font-weight:600; margin-bottom:0.6rem;">百科释义</span>
-              <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">
                 <a href="bgp-tunnel/index.html" style="color:var(--text-main);">
-                  百科：BGP入口中转与隧道加速原理
+                  什么是BGP中转与隧道？
                 </a>
-              </h2>
+              </h3>
               <p style="font-size:0.875rem; color:var(--text-body); line-height:1.6; margin-bottom:1rem;">
-                图文讲解BGP多线动态路由接入技术、国内服务器中转机制与内网加密隧道（如TLS隧道、WireGuard隧道）的加速防封原理。
+                解读边界网关协议（BGP）多线接入与国内加密隧道中转的工作原理。分析为什么BGP中转能大幅提升全国不同运营商的连接体验。
               </p>
             </div>
-            <div style="border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-              <a href="bgp-tunnel/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">阅读词条详解 →</a>
+            <div>
+              <a href="bgp-tunnel/index.html" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+                查阅完整词条释义 →
+              </a>
             </div>
           </div>
         
-          <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow-sm);">
+          <div class="airport-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span style="display:inline-block; font-size:0.75rem; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; font-weight:600; margin-bottom:0.6rem;">百科释义</span>
-              <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">
                 <a href="rules-routing/index.html" style="color:var(--text-main);">
-                  百科：客户端规则分流与代理模式
+                  什么是规则分流与GEOIP？
                 </a>
-              </h2>
+              </h3>
               <p style="font-size:0.875rem; color:var(--text-body); line-height:1.6; margin-bottom:1rem;">
-                全面解析Clash与Shadowrocket客户端中的规则模式（Rule）、全局模式（Global）与直连模式（Direct）。了解国内直连与国外走代理的智能分流原理。
+                详细解释现代代理客户端的规则分流、GEOIP数据库与域名分流机制。告别全局代理导致的国内网站访问变慢与定位错误。
               </p>
             </div>
-            <div style="border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-              <a href="rules-routing/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">阅读词条详解 →</a>
+            <div>
+              <a href="rules-routing/index.html" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+                查阅完整词条释义 →
+              </a>
             </div>
           </div>
         
-          <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:var(--shadow-sm);">
+          <div class="airport-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <span style="display:inline-block; font-size:0.75rem; background:var(--primary-light); color:var(--primary); padding:2px 8px; border-radius:4px; font-weight:600; margin-bottom:0.6rem;">百科释义</span>
-              <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">
                 <a href="dns-leak-pollution/index.html" style="color:var(--text-main);">
-                  百科：DNS污染与SNI阻断原理及解决办法
+                  什么是DNS污染与阻断？
                 </a>
-              </h2>
+              </h3>
               <p style="font-size:0.875rem; color:var(--text-body); line-height:1.6; margin-bottom:1rem;">
-                通俗易懂地剖析长城防火墙（GFW）的两大核心封锁机制：DNS缓存污染与TLS SNI字段阻断。教你如何开启DoH加密与Fake-IP彻底防封锁。
+                解析GFW防火墙实施域名阻断的核心手段：DNS投毒污染、明文UDP劫持与SNI阻断的底层网络原理与防范手段。
               </p>
             </div>
-            <div style="border-top:1px dashed var(--border-color); padding-top:0.75rem;">
-              <a href="dns-leak-pollution/index.html" class="btn btn-outline btn-sm" style="display:block; text-align:center;">阅读词条详解 →</a>
+            <div>
+              <a href="dns-leak-pollution/index.html" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+                查阅完整词条释义 →
+              </a>
             </div>
           </div>
         
