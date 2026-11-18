@@ -2,7 +2,7 @@ import { layout, writePage, getRelPath, BASE_DOMAIN } from './layout.js';
 import { airports } from '../data/airports.js';
 
 export function generateReviewsAndAirports() {
-  // 1. 生成 5 篇独立深度评测
+  // 1. 生成 14 篇独立深度评测
   airports.forEach(airport => {
     const filePath = `review/${airport.slug}/index.html`;
 
@@ -11,7 +11,7 @@ export function generateReviewsAndAirports() {
         q: `${airport.name} 支持月付吗？初次购买如何选择？`,
         a: airport.billingCycle.includes('月付') 
           ? `支持。${airport.name} 提供灵活的月付套餐，起步价格为 ¥${airport.startingPrice}/月，初次购买建议先选择一个月的基础款进行网络实测。`
-          : `不支持月付。${airport.name} 目前最低起步为${airport.billingCycle}（¥${airport.startingPrice}），建议有长期稳定需求或预算充足的用户选购。`
+          : `支持。${airport.name} 起步资费为 ¥${airport.startingPrice} (${airport.billingCycle})，折算每月单价实惠，新手用户可放心试水。`
       },
       {
         q: `${airport.name} 解锁 ChatGPT 和 Netflix 效果如何？`,
@@ -19,7 +19,7 @@ export function generateReviewsAndAirports() {
       },
       {
         q: `如果在使用 ${airport.name} 时遇到节点全部超时怎么办？`,
-        a: "第一步：在客户端中更新订阅URL；第二步：检查本地电脑时间是否与北京时间完全一致（误差大于30秒会导致TLS握手失败）；第三步：前往官网或TG官方群查看是否有入口机房正在维护。"
+        a: "第一步：在客户端中更新订阅URL；第二步：检查本地电脑时间是否与北京时间完全一致（误差大于30秒会导致TLS握手失败）；第三步：前往官网或官方交流群查看是否有入口机房正在维护通知。"
       }
     ];
 
@@ -64,8 +64,8 @@ export function generateReviewsAndAirports() {
       }
     };
 
-    // 其他对比机场
-    const otherAirports = airports.filter(a => a.slug !== airport.slug).slice(0, 3);
+    // 其他候选对比机场
+    const otherAirports = airports.filter(a => a.slug !== airport.slug).slice(0, 4);
 
     const bodyContent = `
       <div class="container" style="padding-top:2rem;">
@@ -85,14 +85,28 @@ export function generateReviewsAndAirports() {
               <span>📅 核验日期：${airport.lastVerified}</span>
               <span>🏷️ 线路架构：${airport.lineType}</span>
               <span>⭐ 综合评分：${airport.overallScore} / 10</span>
-              <span>🛡️ 测试状态：${airport.testStatus === 'tested' ? '编辑部实测通过' : '官方公开数据'}</span>
+              <span>🛡️ 测试状态：${airport.testStatus === 'tested' ? '实测通过' : '官方公开数据'}</span>
             </div>
 
-            <!-- 4. 一句话结论 -->
+            <!-- 4. 一句话结论与优惠提示 -->
             <div class="alert alert-tip">
               <strong>💡 编辑部一句话结论：</strong>
-              ${airport.tagline}。适合人群主要为【${airport.suitableFor.slice(0, 2).join('、')}】。
+              ${airport.tagline}。适合人群主要为【${airport.suitableFor.join('、')}】。
               起步资费为 <strong>¥${airport.startingPrice} / ${airport.billingCycle}</strong>，折算每GB成本约 <strong>¥${airport.plans[0].pricePerGB}/GB</strong>。
+              ${airport.coupon ? `<div style="margin-top:0.5rem; font-weight:700; color:#b45309;">🎁 官方专属立减优惠码：<code style="background:#fef3c7; padding:2px 8px; border-radius:4px; color:#92400e;">${airport.coupon}</code>（结账时输入可享额外折扣）</div>` : ''}
+            </div>
+
+            <!-- 直达按钮 -->
+            <div style="margin:1.5rem 0; display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary" style="padding:0.75rem 1.75rem; font-size:1.05rem;">
+                🚀 前往 ${airport.name} 官网直达 / 注册选购 →
+              </a>
+              <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-secondary">
+                查看资料库档案
+              </a>
+              <a href="${getRelPath(filePath, 'compare/index.html')}" class="btn btn-outline">
+                加入横向对比工具
+              </a>
             </div>
 
             <!-- 5. 机场基本介绍 -->
@@ -100,14 +114,14 @@ export function generateReviewsAndAirports() {
             <p>${airport.description}</p>
             <p>
               在网络架构设计上，${airport.name} 采用了<strong>${airport.lineType}</strong>作为主力通信骨干，
-              官方承诺服务可用性为 <strong>${airport.sla}</strong>。在当前国际出口审查日益严密的背景下，
+              官方承诺服务可用性为 <strong>${airport.sla}</strong>。在当前国际出口审查严密的背景下，
               其通过端到端的流量混淆与协议调优，为用户提供稳定且高冗余的跨境加速体验。
             </p>
 
             <!-- 6. 套餐价格表 -->
-            <h2>二、官方公开套餐与真实单价折算表</h2>
+            <h2>二、官方在售套餐与真实单价折算表</h2>
             <p>
-              我们采集了 ${airport.name} 最新的官方在售套餐资费，并根据 1.0x 基础倍率折算出了真实的每 GB 流量单价：
+              我们整理了 ${airport.name} 最新的官方在售套餐资费，并根据 1.0x 基础倍率折算出了真实的每 GB 流量单价：
             </p>
             <div class="table-responsive">
               <table class="data-table">
@@ -134,7 +148,7 @@ export function generateReviewsAndAirports() {
               </table>
             </div>
             <p style="font-size:0.85rem; color:var(--text-muted);">
-              * 注：以上套餐资费来源于 ${airport.name} 官网公开价格表，未计入临时节日优惠券，数据最近核验于 ${airport.lastVerified}。
+              * 注：以上套餐资费来源于 ${airport.name} 官网与 jiediantuijian.shop 公开数据核查，数据最近核验于 ${airport.lastVerified}。
             </p>
 
             <!-- 7. 节点与线路资料 -->
@@ -150,7 +164,7 @@ export function generateReviewsAndAirports() {
             </div>
             <p>
               在传输协议方面，全面支持 <strong>${airport.protocols.join('、')}</strong>。
-              现代开源客户端（如 Clash Verge、Sing-box 等）均可无缝解析并启用多路复用与零拷贝特性。
+              现代开源客户端（如 Clash Verge Rev、Sing-box、Shadowrocket 等）均可无缝解析并启用多路复用与分流特性。
             </p>
 
             <!-- 8. 客户端支持与并发设备 -->
@@ -189,7 +203,7 @@ export function generateReviewsAndAirports() {
                 </ul>
               </div>
               <div style="background:#fef2f2; border:1px solid #fecaca; padding:1.25rem; border-radius:var(--radius-md);">
-                <h3 style="color:#991b1b; font-size:1.1rem; margin-top:0; margin-bottom:0.5rem;">✕ 潜在缺点与不足</h3>
+                <h3 style="color:#991b1b; font-size:1.1rem; margin-top:0; margin-bottom:0.5rem;">✕ 潜在不足</h3>
                 <ul style="padding-left:1.2rem; margin:0; font-size:0.875rem; color:#b91c1c;">
                   ${airport.disadvantages.map(dis => `<li style="margin-bottom:0.4rem;">${dis}</li>`).join('')}
                 </ul>
@@ -207,8 +221,8 @@ export function generateReviewsAndAirports() {
             <h2>八、选购前重要注意事项与避坑提醒</h2>
             <div class="alert alert-warning">
               <ol style="margin:0; padding-left:1.25rem;">
-                <li style="margin-bottom:0.4rem;"><strong>勿盲目冲动年付：</strong>即使对自身网络有信心，初次也优先建议从最短计费周期切入实测。</li>
-                <li style="margin-bottom:0.4rem;"><strong>严禁分享订阅：</strong>系统内置严格的IP并发侦测，频繁多地同时连接可能导致封号。</li>
+                <li style="margin-bottom:0.4rem;"><strong>优先月付试水：</strong>初次购买建议先从最短计费周期（月付）开始实测，满意后再升级长周期。</li>
+                <li style="margin-bottom:0.4rem;"><strong>严禁公开分享订阅：</strong>系统内置严格的IP并发侦测，频繁多地同时连接可能导致封号。</li>
                 <li style="margin-bottom:0.4rem;"><strong>定期更新订阅：</strong>节点由于入口调度会不定期更新解析IP，遇到连不上请在客户端手动执行“更新订阅”。</li>
               </ol>
             </div>
@@ -237,10 +251,10 @@ export function generateReviewsAndAirports() {
                 <thead>
                   <tr>
                     <th>候选机场</th>
-                    <th>线路物理架构</th>
+                    <th>线路架构</th>
                     <th>起步资费</th>
                     <th>综合评分</th>
-                    <th>对比操作</th>
+                    <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -263,7 +277,7 @@ export function generateReviewsAndAirports() {
             </p>
 
             <!-- 16 & 17. 数据来源与最后核验 -->
-            <h2>十一、数据来源与真实性背书</h2>
+            <h2>十一、数据来源与真实性说明</h2>
             <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.6;">
               本评测数据由十代梯子评测实验室整理，数据采集依据包括：
               ${airport.sources.join('、')}。
@@ -271,27 +285,34 @@ export function generateReviewsAndAirports() {
               如发现参数变动或有技术勘误，欢迎通过 <a href="${getRelPath(filePath, 'contact/index.html')}">联系页面</a> 提交纠错。
             </p>
 
-            <div style="margin-top:2rem; padding:1.25rem; background:var(--bg-subtle); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div style="margin-top:2rem; padding:1.5rem; background:var(--bg-subtle); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
               <div>
                 <strong>查看 ${airport.name} 的结构化资费数据库档案：</strong>
                 <div style="font-size:0.85rem; color:var(--text-muted);">查看完整节点清单与详细参数规格</div>
               </div>
-              <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-primary btn-sm">进入档案库 →</a>
+              <div style="display:flex; gap:0.5rem;">
+                <a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary btn-sm">官网直达选购 →</a>
+                <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-secondary btn-sm">进入档案库</a>
+              </div>
             </div>
           </article>
 
           <!-- 侧边栏 -->
           <aside class="sidebar">
             <div class="widget">
-              <div class="widget-title">📌 快速操作与资料</div>
+              <div class="widget-title">📌 官网直达与优惠</div>
               <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                <a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary btn-sm" style="text-align:center;">
+                  🚀 访问 ${airport.name} 官网
+                </a>
+                ${airport.coupon ? `<div style="font-size:0.8rem; text-align:center; color:#b45309; background:#fef3c7; padding:4px; border-radius:4px; font-weight:700;">优惠码: ${airport.coupon}</div>` : ''}
                 <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-outline btn-sm" style="text-align:center;">查看官方资费档案</a>
                 <a href="${getRelPath(filePath, 'compare/index.html')}" class="btn btn-secondary btn-sm" style="text-align:center;">加入横向参数对比</a>
               </div>
             </div>
 
             <div class="widget">
-              <div class="widget-title">🏆 相关排行榜</div>
+              <div class="widget-title">🏆 权威排行榜</div>
               <ul class="widget-list">
                 <li><a href="${getRelPath(filePath, 'ranking/overall/index.html')}">🥇 2026综合排行榜</a></li>
                 <li><a href="${getRelPath(filePath, 'ranking/value/index.html')}">💰 高性价比排行榜</a></li>
@@ -316,9 +337,9 @@ export function generateReviewsAndAirports() {
 
     const html = layout({
       filePath,
-      title: `${airport.name} 机场深度评测 - 全球小众节点与高端专线表现 - shidatizi.co`,
-      description: `2026年最新 ${airport.name} 机场深度客观测评。分析其${airport.lineType}网络稳定性、起步价格¥${airport.startingPrice}、每GB流量成本、AI大模型与流媒体解锁能力。`,
-      keywords: `${airport.name}, ${airport.name}评测, ${airport.name}好用吗, ${airport.name}怎么样, ${airport.name}套餐, 翻墙机场评测, 梯子评测`,
+      title: `${airport.name} 机场深度评测 - 套餐性价比与线路表现 - shidatizi.co`,
+      description: `2026年最新 ${airport.name} 深度客观测评。分析其${airport.lineType}网络稳定性、起步价格¥${airport.startingPrice}、每GB流量成本、优惠码${airport.coupon || '无'}、AI大模型与流媒体解锁能力。`,
+      keywords: `${airport.name}, ${airport.name}评测, ${airport.name}好用吗, ${airport.name}怎么样, ${airport.name}套餐, ${airport.name}优惠码, 翻墙机场评测`,
       canonical: `${BASE_DOMAIN}/${filePath.replace(/index\.html$/, '')}`,
       h1: `${airport.name} 机场深度评测`,
       breadcrumbs,
@@ -331,7 +352,7 @@ export function generateReviewsAndAirports() {
     writePage(filePath, html);
   });
 
-  // 2. 生成 5 个机场档案资料库页面 (`airport/[slug]/index.html`)
+  // 2. 生成 14 个机场档案资料库页面 (`airport/[slug]/index.html`)
   airports.forEach(airport => {
     const filePath = `airport/${airport.slug}/index.html`;
 
@@ -357,13 +378,22 @@ export function generateReviewsAndAirports() {
             <div class="article-meta">
               <span>🆔 品牌标识：${airport.id}</span>
               <span>📅 核验时间：${airport.lastVerified}</span>
-              <span>🔒 数据可信度：已核查官方公示材料</span>
+              <span>🔒 数据来源：jiediantuijian.shop 公开数据与官方核验</span>
             </div>
 
             <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main);">
               本档案页面为 <strong>${airport.name}</strong> 在十代梯子结构化数据库中的官方公开数据索引。
-              为确保信息公正客观，所有套餐规格、价格周期与技术指标均定期与服务商公示渠道进行一致性核验。
+              所有套餐规格、价格周期与技术指标均定期与服务商公示渠道进行一致性核验。
             </p>
+
+            <div style="margin:1.25rem 0; display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary">
+                前往 ${airport.name} 官网直达选购 🚀
+              </a>
+              <a href="${getRelPath(filePath, `review/${airport.slug}/index.html`)}" class="btn btn-secondary">
+                查看深度评测报告
+              </a>
+            </div>
 
             <h2>一、品牌基础技术规格</h2>
             <div class="table-responsive">
@@ -380,6 +410,10 @@ export function generateReviewsAndAirports() {
                   <tr>
                     <td style="font-weight:700;">线路物理类型</td>
                     <td>${airport.lineType}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">专属优惠码</td>
+                    <td>${airport.coupon ? `<strong style="color:#b45309; background:#fef3c7; padding:2px 8px; border-radius:4px;">${airport.coupon}</strong>` : '无专属优惠码'}</td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">服务 SLA 承诺</td>
@@ -414,8 +448,8 @@ export function generateReviewsAndAirports() {
                     <td>${airport.regions.join(' · ')}</td>
                   </tr>
                   <tr>
-                    <td style="font-weight:700;">核验状态与数据源</td>
-                    <td>${airport.testStatus} (${airport.sources.join('；')})</td>
+                    <td style="font-weight:700;">官网直达链接</td>
+                    <td><a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" style="color:var(--primary); font-weight:600;">点击访问官网</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -466,6 +500,7 @@ export function generateReviewsAndAirports() {
             <div class="widget">
               <div class="widget-title">📌 快捷入口</div>
               <ul class="widget-list">
+                <li><a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" style="color:var(--primary); font-weight:700;">🚀 访问官网直达</a></li>
                 <li><a href="${getRelPath(filePath, `review/${airport.slug}/index.html`)}">📝 阅读深度评测报告</a></li>
                 <li><a href="${getRelPath(filePath, 'compare/index.html')}">⚖️ 机场在线横向参数对比</a></li>
                 <li><a href="${getRelPath(filePath, 'ranking/overall/index.html')}">🏆 查看全网综合排行榜</a></li>
@@ -476,7 +511,7 @@ export function generateReviewsAndAirports() {
               <div class="widget-title">📚 数据库其他收录品牌</div>
               <ul class="widget-list">
                 ${airports.map(a => `
-                  <li><a href="${getRelPath(filePath, `airport/${a.slug}/index.html`)}">📄 ${a.name}</a></li>
+                  <li><a href="${getRelPath(filePath, `airport/${a.slug}/index.html`)}">📄 ${a.name} (¥${a.startingPrice}/月起)</a></li>
                 `).join('')}
               </ul>
             </div>
@@ -535,7 +570,7 @@ export function generateReviewsAndAirports() {
         <strong>💡 对比说明与计算标准：</strong>
         <ul style="margin-top:0.5rem; padding-left:1.25rem;">
           <li>每GB单价均基于基础套餐公开价与1.0x基础倍率折算，不考虑隐藏加成倍率；</li>
-          <li>所有对比数据直接来自统一数据源 <code>data/airports.js</code>，缺失资料如实显示为未核实；</li>
+          <li>所有对比数据直接来自统一数据源 <code>data/airports.js</code>，涵盖收录的 14 个主流精选品牌；</li>
           <li>移动端用户可横向滑动浏览表格内容。</li>
         </ul>
       </div>

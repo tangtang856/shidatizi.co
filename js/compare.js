@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // 默认选中前两家
-  let selectedSlugs = ['tag-internet', 'flyingbird', 'kuromis'];
+  // 默认选中综合前三名
+  let selectedSlugs = ['invisible', 'breezenet', 'wavenet'];
 
   function render() {
     // 1. 渲染选择器
     const selectorHtml = `
       <div class="compare-selector-wrap" style="margin-bottom:1.5rem;">
         <div style="font-weight:700; margin-bottom:0.6rem; color:var(--text-main); font-size:0.95rem;">
-          选择参与对比的品牌（支持多选 2 ~ 4 家，点击勾选或取消）：
+          选择参与对比的品牌（共收录 ${airports.length} 家精选品牌，点击标签添加或移除，支持 2 ~ 4 家同屏 PK）：
         </div>
         <div class="compare-selector">
           ${airports.map(a => {
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="chip-select ${isSelected ? 'selected' : ''}" data-slug="${a.slug}">
                 <span>${isSelected ? '✓' : '+'}</span>
                 <strong>${a.name}</strong>
+                <small style="opacity:0.8;">(¥${a.startingPrice})</small>
               </div>
             `;
           }).join('')}
@@ -95,7 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
               `).join('')}
             </tr>
             <tr>
-              <td style="font-weight:600;">线路类型与SLA</td>
+              <td style="font-weight:600;">专属优惠券</td>
+              ${activeList.map(a => `
+                <td style="text-align:center;">
+                  ${a.coupon ? `<span style="display:inline-block; font-size:0.8rem; font-weight:700; color:#b45309; background:#fef3c7; padding:2px 8px; border-radius:4px;">${a.coupon}</span>` : '<span style="color:var(--text-muted); font-size:0.8rem;">无</span>'}
+                </td>
+              `).join('')}
+            </tr>
+            <tr>
+              <td style="font-weight:600;">线路架构与SLA</td>
               ${activeList.map(a => `
                 <td style="text-align:center;">
                   <div>${a.lineType}</div>
@@ -132,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <td style="font-weight:600;">AI大模型解锁</td>
               ${activeList.map(a => `
                 <td style="text-align:center; font-size:0.8rem;">
-                  ${a.aiSupport.join(' · ')}
+                  ${a.aiSupport.slice(0, 3).join(' · ')}
                 </td>
               `).join('')}
             </tr>
@@ -149,27 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
               ${activeList.map(a => `
                 <td style="font-size:0.8rem; vertical-align:top;">
                   <ul style="padding-left:1.2rem; margin:0;">
-                    ${a.advantages.slice(0, 3).map(adv => `<li style="margin-bottom:4px; color:#065f46;">${adv}</li>`).join('')}
+                    ${a.advantages.slice(0, 2).map(adv => `<li style="margin-bottom:4px; color:#065f46;">${adv}</li>`).join('')}
                   </ul>
                 </td>
               `).join('')}
             </tr>
             <tr>
-              <td style="font-weight:600;">主要劣势</td>
-              ${activeList.map(a => `
-                <td style="font-size:0.8rem; vertical-align:top;">
-                  <ul style="padding-left:1.2rem; margin:0;">
-                    ${a.disadvantages.slice(0, 2).map(dis => `<li style="margin-bottom:4px; color:#991b1b;">${dis}</li>`).join('')}
-                  </ul>
-                </td>
-              `).join('')}
-            </tr>
-            <tr>
-              <td style="font-weight:600;">详细页面</td>
+              <td style="font-weight:600;">直达与评测</td>
               ${activeList.map(a => `
                 <td style="text-align:center;">
-                  <a href="${rootPrefix}review/${a.slug}/index.html" class="btn btn-outline btn-sm" style="display:block; margin-bottom:4px;">查看深度评测</a>
-                  <a href="${rootPrefix}airport/${a.slug}/index.html" class="btn btn-secondary btn-sm" style="display:block;">资料库档案</a>
+                  <a href="${a.affiliateUrl || a.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary btn-sm" style="display:block; margin-bottom:4px;">官网直达选购 🚀</a>
+                  <a href="${rootPrefix}review/${a.slug}/index.html" class="btn btn-outline btn-sm" style="display:block; margin-bottom:4px;">查看评测</a>
+                  <a href="${rootPrefix}airport/${a.slug}/index.html" class="btn btn-secondary btn-sm" style="display:block;">参数档案</a>
                 </td>
               `).join('')}
             </tr>
@@ -191,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
           if (selectedSlugs.length > 2) {
             selectedSlugs = selectedSlugs.filter(s => s !== slug);
           } else {
-            // 最少保留2个
             alert('请至少保留 2 家机场进行对比！');
             return;
           }

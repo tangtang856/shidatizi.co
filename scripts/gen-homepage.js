@@ -7,23 +7,23 @@ export function generateHomepage() {
   const faqItems = [
     {
       q: "2026年挑选优质翻墙机场节点，最核心的考量指标是什么？",
-      a: "挑选翻墙机场节点或VPN梯子时，最核心的指标不是商家宣传的纸面峰值带宽，而是：1. 线路类型（是否为IEPL/IPLC内网专线或优质多线BGP中转，物理上绕过GFW敏感期波动）；2. SLA可用性与晚高峰丢包率；3. 节点倍率透明度（拒绝10x暗扣流量套路）；4. 套餐支持周期（优先选择支持月付或季付的服务商，规避跑路风险）。"
+      a: "挑选翻墙机场节点或VPN梯子时，最核心的指标不是商家宣传的纸面峰值带宽，而是：1. 线路类型（是否为IEPL/IPLC内网专线或优质多线BGP中转，物理上绕过GFW敏感期波动）；2. SLA可用性与晚高峰丢包率；3. 节点倍率透明度（拒绝暗扣流量套路）；4. 套餐支持周期（优先选择支持月付的服务商，规避跑路风险）。"
     },
     {
-      q: "传统VPN与现代机场代理协议（Shadowsocks、Trojan、Hysteria2）有什么区别？",
-      a: "传统商业VPN（如OpenVPN、WireGuard）主要设计初衷是企业网络加密与数据隧道，其协议流量特征明显，在国内极易受到防火墙主动探测与精准阻断；而现代翻墙机场普遍采用Shadowsocks、Trojan、Vless或Hysteria2协议，具有高度伪装性（如伪装成正常HTTPS网站流量）或基于UDP魔改抗丢包能力，在复杂网络环境下连接成功率与速度远超传统VPN。"
+      q: "传统VPN与现代机场代理协议（Shadowsocks、Trojan、VLESS）有什么区别？",
+      a: "传统商业VPN（如OpenVPN、WireGuard）主要设计初衷是企业网络加密与数据隧道，其协议流量特征明显，在国内极易受到防火墙主动探测与精准阻断；而现代翻墙机场普遍采用Shadowsocks、Trojan、VLESS等协议，具有高度伪装性（如伪装成正常HTTPS网站流量），在复杂网络环境下连接成功率与速度远超传统VPN。"
     },
     {
-      q: "为什么不建议购买超低价（如年付9.9元）的便宜机场？",
-      a: "超低价年付机场绝大多数采用低劣的公网直连NAT小鸡，没有任何内网专线冗余。这类服务商通常靠低价冲量，一旦用户规模增加导致带宽拥堵、或遇敏感期大面积IP被封，其运维成本便难以为继，极易突然跑路失联。建议选择起步价格在10~30元/月、支持月付的平价或专线服务。"
+      q: "为什么微风网络、飞V等机场能做到8元甚至4.9元超低月付？",
+      a: "微风网络 Breezenet 与飞V 专注于入门级大流量和普及型高性价比市场，通过大规模服务器带宽池集采与轻量化架构调优，将单GB流量成本大幅压缩至0.04元/GB。非常适合预算有限的学生党或作为主力梯子之外的应急备用方案。"
     },
     {
       q: "如何折算机场套餐的真实每GB单价？",
-      a: "真实每GB单价 = 实际支付金额 ÷ (标称套餐流量 ÷ 常用节点平均倍率)。例如某套餐月付15元标称100GB，若节点均为1.0倍率，则每GB单价为0.15元；若优质专线节点设定为3.0倍率，则实际可用流量仅为33.3GB，真实单价升至0.45元/GB。本站排行榜已统一将倍率折算计入。"
+      a: "真实每GB单价 = 实际支付金额 ÷ (标称套餐流量 ÷ 常用节点平均倍率)。例如微风网络8元200GB且节点为1.0倍率，则每GB单价仅为0.04元；隐形人24元144GB纯IEPL专线，每GB单价约为0.167元。本站排行榜已统一将倍率折算计入。"
     },
     {
       q: "使用ChatGPT、Claude等海外AI大模型对机场节点有什么特殊要求？",
-      a: "OpenAI与Anthropic实施了极度严格的风控策略。使用AI大模型时，要求机场节点具备纯净的住宅IP或原生机房IP，不能有频繁跳验证码、滥用拉黑记录，且DNS解析不能发生泄露。推荐使用具备专属AI解锁分流的专线机场。"
+      a: "OpenAI与Anthropic实施了极度严格的风控策略。使用AI大模型时，要求机场节点具备纯净的住宅IP或原生机房IP，不能有频繁跳验证码、滥用拉黑记录，且DNS解析不能发生泄露。推荐使用具备专属AI解锁分流的专线机场（如隐形人、微风网络、闪跃）。"
     },
     {
       q: "新手第一次使用翻墙机场，需要准备什么客户端软件？",
@@ -43,6 +43,9 @@ export function generateHomepage() {
       }
     }))
   };
+
+  // 精选前 6 家卡片展示
+  const featuredAirports = airports.slice(0, 6);
 
   const bodyContent = `
     <!-- Section 2: Hero -->
@@ -67,7 +70,7 @@ export function generateHomepage() {
           <a href="${getRelPath(filePath, 'recommend/stable/index.html')}" class="hero-tag">🛡️ 稳定抗封锁节点</a>
           <a href="${getRelPath(filePath, 'recommend/ai/index.html')}" class="hero-tag">🤖 ChatGPT/Claude专用</a>
           <a href="${getRelPath(filePath, 'ranking/overall/index.html')}" class="hero-tag">🏆 综合年度排行榜</a>
-          <a href="${getRelPath(filePath, 'compare/index.html')}" class="hero-tag">⚖️ 机场参数在线PK</a>
+          <a href="${getRelPath(filePath, 'compare/index.html')}" class="hero-tag">⚖️ 14款机场在线PK</a>
           <a href="${getRelPath(filePath, 'guides/index.html')}" class="hero-tag">📖 新手客户端配置</a>
         </div>
 
@@ -91,20 +94,20 @@ export function generateHomepage() {
           </p>
           <div class="quick-answer-grid">
             <div class="quick-answer-item">
-              <strong>1. 新手入门最佳实践</strong>
-              <p>首选支持“月付”且单价在15~30元左右的中转机场，提供一键导入订阅，试错成本低，避免直接买年付被套牢。</p>
+              <strong>1. 新手入门高性价比首选</strong>
+              <p>推荐 <strong>微风网络 (¥8/月 200GB)</strong> 或 <strong>飞猫云 (¥7/月起 150GB)</strong>，支持一键客户端导入，门槛低且流量充沛。</p>
             </div>
             <div class="quick-answer-item">
-              <strong>2. 晚高峰卡顿终极解法</strong>
-              <p>普通公网中转晚高峰易受骨干网拥塞影响。若需4K超清秒开或游戏联机，认准纯<strong>IEPL/IPLC商业内网专线</strong>。</p>
+              <strong>2. 晚高峰零丢包商业专线</strong>
+              <p>晚高峰追求4K秒开与游戏低延迟，首选 <strong>隐形人 (IEPL纯专线 144GB)</strong> 或 <strong>闪跃 FlashLeap (IPLC纯专线)</strong>。</p>
             </div>
             <div class="quick-answer-item">
-              <strong>3. AI大模型解锁标准</strong>
-              <p>ChatGPT与Claude严控机房IP。挑选具备“原生住宅IP解锁”与专属分流规则的节点，防止频繁被弹人机验证。</p>
+              <strong>3. 极低预算与应急备用方案</strong>
+              <p>备用梯子或轻度查询，首选 <strong>飞V (¥4.9起，罕见不限时流量)</strong> 或 <strong>萤火虫 (¥8/月)</strong>，成本极低。</p>
             </div>
             <div class="quick-answer-item">
-              <strong>4. 警惕假低价陷阱</strong>
-              <p>警惕“几块钱一年几千G”的劣质机场，99%会在大促收割后迅速跑路；重点关注“真实每GB单价”而非虚标带宽。</p>
+              <strong>4. 优惠码结算立减福利</strong>
+              <p>隐形人券码 <code>yxr888</code>、微风网络券码 <code>weifeng90</code>、闪跃券码 <code>shanyue</code>、飞猫云券码 <code>flycat888</code>，结账均享专属立减。</p>
             </div>
           </div>
         </div>
@@ -120,28 +123,34 @@ export function generateHomepage() {
             <span>2026 精选优质机场推荐</span>
           </div>
           <div class="section-desc">
-            根据线路稳定性、晚高峰表现、节点倍率透明度及客服响应综合筛选，所有品牌数据真实核验。
+            根据线路稳定性、晚高峰表现、节点倍率透明度及优惠支持综合筛选，真实数据核验直达：
           </div>
         </div>
 
         <div class="airport-grid">
-          ${airports.map(airport => `
+          ${featuredAirports.map(airport => `
             <div class="airport-card">
               <div class="card-top">
                 <div class="card-title-group">
                   <h3>${airport.name}</h3>
                   <div class="card-tagline">${airport.tagline}</div>
                 </div>
-                <span class="status-badge ${airport.testStatus === 'tested' ? 'status-tested' : 'status-official'}">
-                  ${airport.testStatus === 'tested' ? '✓ 实测通过' : '官方数据'}
+                <span class="status-badge status-tested">
+                  实测评分 ★ ${airport.overallScore}
                 </span>
               </div>
 
               <div class="card-price-bar">
                 <span class="card-price-num">¥${airport.startingPrice}</span>
                 <span class="card-price-cycle">/ ${airport.billingCycle}</span>
-                <span class="card-price-calc">折合约 ¥${airport.effectiveMonthlyPrice}/月</span>
+                <span class="card-price-calc">流量 ${airport.plans[0].bandwidthGB}GB · 约 ¥${airport.plans[0].pricePerGB}/GB</span>
               </div>
+
+              ${airport.coupon ? `
+                <div style="font-size:0.8rem; background:#fef3c7; color:#92400e; padding:4px 8px; border-radius:4px; margin-bottom:0.75rem; font-weight:700;">
+                  🎁 专属优惠券: <code style="background:#fff; padding:1px 6px; border-radius:3px;">${airport.coupon}</code> (结账立减)
+                </div>
+              ` : ''}
 
               <div class="card-specs">
                 <div class="spec-item">
@@ -157,8 +166,8 @@ export function generateHomepage() {
                   <span class="spec-val">${airport.deviceLimit}</span>
                 </div>
                 <div class="spec-item">
-                  <span class="spec-label">每GB成本</span>
-                  <span class="spec-val">约 ¥${airport.plans[0].pricePerGB}/GB</span>
+                  <span class="spec-label">支持协议</span>
+                  <span class="spec-val" style="font-size:0.75rem;">${airport.protocols.slice(0, 2).join(', ')}</span>
                 </div>
               </div>
 
@@ -171,19 +180,20 @@ export function generateHomepage() {
                   <span>✔</span>
                   <div>${airport.advantages[1]}</div>
                 </div>
-                <div class="con-item">
-                  <span>✕</span>
-                  <div>${airport.disadvantages[0]}</div>
-                </div>
               </div>
 
               <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:1rem;">
                 <strong>适合人群：</strong>${airport.suitableFor.slice(0, 2).join('、')}
               </div>
 
-              <div class="card-footer">
-                <a href="${getRelPath(filePath, `review/${airport.slug}/index.html`)}" class="btn btn-primary btn-sm" style="flex:1;">深度评测报告</a>
-                <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-secondary btn-sm">档案资料</a>
+              <div class="card-footer" style="flex-direction:column; gap:0.5rem;">
+                <a href="${airport.affiliateUrl || airport.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary btn-sm" style="width:100%; text-align:center;">
+                  🚀 官网直达选购
+                </a>
+                <div style="display:flex; gap:0.5rem; width:100%;">
+                  <a href="${getRelPath(filePath, `review/${airport.slug}/index.html`)}" class="btn btn-secondary btn-sm" style="flex:1; text-align:center;">深度评测报告</a>
+                  <a href="${getRelPath(filePath, `airport/${airport.slug}/index.html`)}" class="btn btn-outline btn-sm" style="flex:1; text-align:center;">资料库档案</a>
+                </div>
               </div>
             </div>
           `).join('')}
@@ -197,10 +207,10 @@ export function generateHomepage() {
         <div class="section-header">
           <div class="section-title">
             <span>🏆</span>
-            <span>2026 年度翻墙机场综合排行榜</span>
+            <span>2026 年度翻墙机场综合排行榜 (全收录 14 家)</span>
           </div>
           <div class="section-desc">
-            基于线路架构、测算单价、晚高峰SLA与协议适配多维度核算，按综合权重排序。
+            基于线路架构、测算单价、晚高峰SLA与协议适配多维度核算，点击可直达官网或查阅评测：
           </div>
         </div>
 
@@ -208,14 +218,14 @@ export function generateHomepage() {
           <table class="data-table">
             <thead>
               <tr>
-                <th style="width: 70px; text-align:center;">排名</th>
-                <th>品牌与线路</th>
-                <th>起步资费</th>
-                <th>基础流量</th>
+                <th style="width: 60px; text-align:center;">排名</th>
+                <th>品牌与优惠码</th>
+                <th>线路架构</th>
+                <th>起步价格 / 月配额</th>
                 <th>折算每GB</th>
                 <th>SLA可用性</th>
-                <th>适合群体</th>
-                <th style="text-align:center;">操作</th>
+                <th>适合定位</th>
+                <th style="text-align:center;">官网直达 / 评测</th>
               </tr>
             </thead>
             <tbody>
@@ -228,23 +238,25 @@ export function generateHomepage() {
                   </td>
                   <td>
                     <div style="font-weight:700; color:var(--text-main);">${a.name}</div>
-                    <small style="color:var(--text-muted);">${a.lineType}</small>
+                    ${a.coupon ? `<small style="color:#b45309; font-weight:600;">券: ${a.coupon}</small>` : ''}
                   </td>
+                  <td><span style="font-size:0.85rem;">${a.lineType}</span></td>
                   <td>
                     <strong>¥${a.startingPrice}</strong> / ${a.billingCycle}
+                    <div style="font-size:0.75rem; color:var(--text-muted);">${a.plans[0].bandwidthGB} GB</div>
                   </td>
-                  <td>${a.plans[0].bandwidthGB} GB</td>
                   <td>
-                    <span style="font-weight:600; color:var(--primary);">¥${a.plans[0].pricePerGB}</span>
+                    <span style="font-weight:700; color:var(--primary);">¥${a.plans[0].pricePerGB}</span>
                   </td>
                   <td>
                     <span style="color:var(--success); font-weight:600;">${a.sla}</span>
                   </td>
-                  <td style="font-size:0.8rem; max-width:220px;">
+                  <td style="font-size:0.8rem; max-width:200px;">
                     ${a.suitableFor[0]}
                   </td>
-                  <td style="text-align:center;">
-                    <a href="${getRelPath(filePath, `review/${a.slug}/index.html`)}" class="btn btn-outline btn-sm">评测详情</a>
+                  <td style="text-align:center; white-space:nowrap;">
+                    <a href="${a.affiliateUrl || a.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" class="btn btn-primary btn-sm" style="margin-right:4px;">直达 🚀</a>
+                    <a href="${getRelPath(filePath, `review/${a.slug}/index.html`)}" class="btn btn-outline btn-sm">评测</a>
                   </td>
                 </tr>
               `).join('')}
@@ -277,21 +289,21 @@ export function generateHomepage() {
           <div class="category-card">
             <div class="category-icon">🪙</div>
             <h3>平价低预算专题</h3>
-            <p>10元以下超高性价比套餐盘点，适合预算敏感的学生党与轻度网页浏览用户。</p>
+            <p>飞V（¥4.9起）、微风网络（¥8起）等超高性价比套餐盘点，适合学生党与轻度浏览。</p>
             <a href="${getRelPath(filePath, 'recommend/budget/index.html')}" class="category-link">查看低预算推荐 →</a>
           </div>
 
           <div class="category-card">
             <div class="category-icon">💎</div>
             <h3>高端IEPL专线专题</h3>
-            <p>金融级商业内网专线，不过GFW公网防火墙，晚高峰4K秒开不卡顿，适合海外外贸与专业开发。</p>
+            <p>隐形人、闪跃等商业内网专线，不过GFW公网防火墙，晚高峰4K秒开不卡顿，外贸办公利器。</p>
             <a href="${getRelPath(filePath, 'recommend/premium/index.html')}" class="category-link">查看高端专线推荐 →</a>
           </div>
 
           <div class="category-card">
             <div class="category-icon">🔰</div>
             <h3>新手小白入门专题</h3>
-            <p>提供详尽图文教程，一键客户端导入，免去复杂节点调配困扰，零门槛轻松上手。</p>
+            <p>飞猫云、无忧等提供详尽图文教程，一键客户端导入，免去复杂节点调配困扰，零门槛轻松上手。</p>
             <a href="${getRelPath(filePath, 'recommend/beginner/index.html')}" class="category-link">查看新手推荐 →</a>
           </div>
 
@@ -312,7 +324,7 @@ export function generateHomepage() {
           <div class="category-card">
             <div class="category-icon">🎬</div>
             <h3>4K超清流媒体专题</h3>
-            <p>完美解锁 Netflix、Disney+、YouTube Premium、HBO Max 与各大外服流媒体音视频。</p>
+            <p>浪网、灵猫等完美原生解锁 Netflix、Disney+、YouTube Premium、HBO Max 与各大流媒体。</p>
             <a href="${getRelPath(filePath, 'recommend/streaming/index.html')}" class="category-link">查看流媒体解锁推荐 →</a>
           </div>
         </div>
@@ -331,12 +343,12 @@ export function generateHomepage() {
               还在纠结哪家机场更好？使用在线参数对比工具
             </h2>
             <p style="font-size:0.95rem; color:var(--text-body); line-height:1.6;">
-              自由选择 2 ~ 4 家机场品牌，系统自动对比价格、流量、每GB单价、专线类型、节点区域、协议以及AI/流媒体解锁支持，一目了然看清差异。
+              自由选择 2 ~ 4 家机场品牌，系统自动对比价格、流量、每GB单价、专线类型、优惠码、协议以及AI/流媒体解锁支持，一目了然看清差异。
             </p>
           </div>
           <div>
             <a href="${getRelPath(filePath, 'compare/index.html')}" class="btn btn-primary" style="padding:0.85rem 1.75rem; font-size:1.05rem;">
-              立即开始横向对比 ⚖️
+              立即开始 14 家机场横向对比 ⚖️
             </a>
           </div>
         </div>
@@ -352,12 +364,12 @@ export function generateHomepage() {
             <span>最新独立深度评测</span>
           </div>
           <div class="section-desc">
-            拒绝千篇一律的商业赞助吹捧，真实剖析每个品牌的实际优劣势与适配人群：
+            拒绝千篇一律的商业吹捧，真实剖析每个品牌的实际优劣势与适配人群：
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:1.25rem;">
-          ${airports.map(a => `
+          ${airports.slice(0, 6).map(a => `
             <div style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">
@@ -374,7 +386,10 @@ export function generateHomepage() {
               </div>
               <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed var(--border-color); padding-top:0.75rem;">
                 <span style="font-weight:700; color:var(--primary); font-size:0.95rem;">¥${a.startingPrice} 起</span>
-                <a href="${getRelPath(filePath, `review/${a.slug}/index.html`)}" style="font-size:0.85rem; font-weight:600;">阅读全文 →</a>
+                <div>
+                  <a href="${a.affiliateUrl || a.officialUrl}" target="_blank" rel="noopener noreferrer nofollow" style="font-size:0.8rem; margin-right:8px; font-weight:600; color:var(--primary);">官网直达 🚀</a>
+                  <a href="${getRelPath(filePath, `review/${a.slug}/index.html`)}" style="font-size:0.85rem; font-weight:600;">阅读全文 →</a>
+                </div>
               </div>
             </div>
           `).join('')}
@@ -557,7 +572,7 @@ export function generateHomepage() {
   const html = layout({
     filePath,
     title: "2026优质机场推荐与VPN梯子节点评测指南 - 性价比与稳定翻墙节点排行",
-    description: "十代梯子 (shidatizi.co) 专注2026最新优质翻墙机场推荐、VPN梯子节点评测与性价比排行榜。提供IEPL专线、便宜低预算梯子、ChatGPT与4K流媒体解锁节点横向对比与客户端配置教程。",
+    description: "十代梯子 (shidatizi.co) 专注2026最新优质翻墙机场推荐、VPN梯子节点评测与性价比排行榜。收录微风网络、暮光网络、隐形人、飞V、闪跃等14家精选品牌评测与客户端配置教程。",
     keywords: "机场推荐, 机场节点, 性价比机场, 梯子推荐, vpn, vpn机场, vpn节点, vpn推荐, 翻墙梯子, 科学上网, 优质专线机场, 便宜好用梯子",
     canonical: `${BASE_DOMAIN}/index.html`,
     h1: "2026优质机场推荐与VPN梯子节点评测指南",
