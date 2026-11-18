@@ -5,20 +5,20 @@ export function generateRecommendations() {
   const topics = [
     {
       slug: "budget",
-      title: "便宜低预算机场推荐 - 10元以下平价翻墙梯子节点精选",
+      title: "便宜低预算机场推荐 - 平价高性价比翻墙梯子节点精选",
       h1: "平价低预算机场推荐与防坑指南",
-      metaDesc: "盘点2026年适合学生党与轻度用户的便宜平价低预算机场。月付10元以下高性价比VPN梯子节点推荐，涵盖飞V、微风网络、飞猫云、萤火虫等超低价选择。",
+      metaDesc: "盘点2026年适合学生党与轻度用户的便宜平价低预算与高性价比机场。精选高性价比VPN梯子节点推荐，涵盖微风网络、飞猫云、萤火虫、隐形人等超值选择。",
       keywords: "便宜机场, 低预算机场, 性价比机场, 10元机场, 穷鬼套餐, 便宜梯子, 平价节点",
-      intro: "对于日常仅用于查阅维基百科、学术文献、偶尔浏览推特与YouTube视频的轻度用户来说，每月动辄花费四五十元并不划算。本文专门聚焦于起步门槛低（低至¥4.9/月）、支持灵活月付、流量单价实惠的平价低预算翻墙机场推荐，同时给出防坑保本的核心实用技巧。",
-      filterFn: a => a.startingPrice <= 15 || a.effectiveMonthlyPrice <= 15,
+      intro: "对于日常仅用于查阅维基百科、学术文献、偶尔浏览推特与YouTube视频的用户来说，本文专门聚焦于起步门槛亲民、支持灵活月付、流量单价实惠且晚高峰稳定的平价高性价比翻墙机场推荐，包含微风网络、飞猫云、萤火虫与隐形人等精选方案，同时给出防坑保本的核心实用技巧。",
+      filterFn: a => ['breezenet', 'flycat', 'firefly', 'invisible'].includes(a.slug),
       tips: [
         "坚持按月付费：哪怕年付打5折，初次购买也强烈建议先月付体验。只要服务商能撑过3个月且网络稳定，再考虑按季或年付。",
-        "记得使用优惠码：微风网络可使用专属券码 weifeng90，飞猫云使用 flycat888，萤火虫使用 firefly 享受额外立减福利。",
-        "准备备用节点：便宜机场在特殊敏感期更容易受到封锁影响，建议购买一个平价主力包搭配一个飞V的不限时按量计费包作为容灾后备。"
+        "记得使用优惠码：微风网络可使用专属券码 weifeng90，飞猫云使用 flycat888，萤火虫使用 firefly，隐形人使用 yxr888 享受额外立减福利。",
+        "准备备用节点：建议购买一个平价大流量包搭配专线后备，确保任何突发封锁时期网络畅通。"
       ],
       faqs: [
-        { q: "10元以内的便宜机场，网速能看YouTube 4K视频吗？", a: "在非晚高峰时段，只要是正常的BGP中转机场，看4K视频完全可以流畅跑满百兆；但在晚上8点~11点的高峰期，便宜机场由于带宽冗余较小，可能出现自动降画质至1080P或轻微缓冲。" },
-        { q: "有没有永久免费的翻墙VPN梯子？", a: "天下没有免费的午餐。绝大多数所谓的免费VPN要么充斥着大量弹窗恶意广告，要么在后台偷偷收集并倒卖用户的上网隐私甚至劫持电商返利Cookie，极不安全。建议选择4.9元或8元起步的正规平价机场。" }
+        { q: "10元以内的便宜机场，网速能看YouTube 4K视频吗？", a: "在非晚高峰时段，只要是正常的BGP中转机场，看4K视频完全可以流畅跑满百兆；但在晚上8点~11点的高峰期，建议选配具备纯专线通道的品牌（如微风网络或隐形人）。" },
+        { q: "有没有永久免费的翻墙VPN梯子？", a: "天下没有免费的午餐。绝大多数所谓的免费VPN要么充斥着大量弹窗恶意广告，要么在后台偷偷收集并倒卖用户的上网隐私甚至劫持电商返利Cookie，极不安全。建议选择正规平价机场。" }
       ]
     },
     {
@@ -115,7 +115,9 @@ export function generateRecommendations() {
 
   topics.forEach(topic => {
     const filePath = `recommend/${topic.slug}/index.html`;
-    const matchedAirports = airports.filter(topic.filterFn);
+    const matchedAirports = topic.slug === 'budget'
+      ? ['breezenet', 'flycat', 'firefly', 'invisible'].map(slug => airports.find(a => a.slug === slug)).filter(Boolean)
+      : airports.filter(topic.filterFn);
 
     const faqSchema = {
       "@context": "https://schema.org",
