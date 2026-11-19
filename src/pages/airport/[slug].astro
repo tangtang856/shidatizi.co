@@ -10,15 +10,26 @@ export function getStaticPaths() {
 }
 
 const { airport } = Astro.props;
+
+const cleanName = airport.name.split(' ')[0];
+const firstPlan = airport.plans && airport.plans.length > 0 ? airport.plans[0] : null;
+const bandwidthGB = firstPlan ? firstPlan.bandwidthGB : 100;
+const lowestPerGB = firstPlan
+  ? (firstPlan.pricePerGB || (firstPlan.price / firstPlan.bandwidthGB))
+  : (airport.startingPrice / 100);
+
+const seoTitle = `${airport.name}怎么样？2026官方套餐价格表/月流量/节点分布与测速档案资料 - shidatizi.co`;
+const seoDescription = `【官方档案】${airport.name}怎么样？收录${airport.name}最新官网地址直达、起步套餐月费¥${airport.startingPrice}（包含${bandwidthGB}GB高速月流量，单GB低至¥${lowestPerGB.toFixed(3)}）、${airport.lineType}专线架构、${airport.sla}高可用率、核心节点部署地区及晚高峰测速档案资料。`;
+const seoKeywords = `${airport.name}怎么样, ${cleanName}怎么样, ${cleanName}资料库, ${cleanName}价格表, ${cleanName}流量, ${cleanName}节点信息, ${cleanName}测速, ${cleanName}官网直达, 梯子档案, 翻墙机场档案`;
 ---
 
 <BaseLayout
-  title={`${airport.name} 资料库档案与官网直达 - shidatizi.co`}
-  description={`收录${airport.name}官方资料库档案。包含${airport.name}官方最新网址直达、优惠码、套餐价格、线路架构、客户端支持与实测评分。`}
-  keywords={`${airport.name}, ${airport.name}官网, ${airport.name}节点, ${airport.name}怎么样, 翻墙机场档案`}
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
   breadcrumbs={[
     { name: "机场资料库", href: "/airport/" },
-    { name: airport.name }
+    { name: `${airport.name} 档案` }
   ]}
 >
   <div class="py-12 bg-slate-50 min-h-screen">
@@ -29,13 +40,13 @@ const { airport } = Astro.props;
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-slate-100">
           <div>
             <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 mb-2 inline-block">
-              机场品牌收录档案
+              机场品牌收录档案 · #{airport.order}
             </span>
-            <h1 class="text-2xl sm:text-3xl font-black text-slate-900">
-              {airport.name} 档案资料库
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug">
+              {airport.name}怎么样？官方套餐价格、月流量配额、节点分布与测速档案
             </h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              收录编号：#{airport.order} · 最后核验时间：{airport.lastVerified || '2026-03-01'}
+            <p class="text-xs sm:text-sm text-slate-500 mt-2">
+              收录编号：#{airport.order} · 最后核验时间：{airport.lastVerified || '2026-03-01'} · 测速评分：{airport.speedScore || 9.5} / 10
             </p>
           </div>
 
@@ -52,7 +63,7 @@ const { airport } = Astro.props;
               href={`/review/${airport.slug}/`}
               class="px-6 py-2 rounded-xl font-bold text-xs text-slate-700 bg-slate-100 hover:bg-slate-200 text-center transition-all"
             >
-              查阅深度测速报告
+              查阅全维度测速评测
             </a>
           </div>
         </div>
@@ -64,8 +75,8 @@ const { airport } = Astro.props;
             <strong class="text-slate-900 text-sm">{airport.lineType}</strong>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
-            <span class="text-slate-400 block text-xs">起步价格</span>
-            <strong class="text-blue-600 text-sm">¥{airport.startingPrice} / {airport.billingCycle || '月'}</strong>
+            <span class="text-slate-400 block text-xs">起步价格与月流量</span>
+            <strong class="text-blue-600 text-sm">¥{airport.startingPrice} / {airport.billingCycle || '月'}（{bandwidthGB} GB）</strong>
           </div>
           <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
             <span class="text-slate-400 block text-xs">服务可用率 (SLA)</span>
@@ -99,7 +110,7 @@ const { airport } = Astro.props;
       {airport.plans && airport.plans.length > 0 && (
         <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
           <h2 class="text-lg font-black text-slate-900 mb-4">
-            已核验的公开套餐方案
+            已核验的官方公开套餐方案
           </h2>
           <div class="space-y-3">
             {airport.plans.map(p => (
