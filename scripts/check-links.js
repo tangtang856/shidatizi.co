@@ -20,7 +20,7 @@ function scanHtmlFiles(dir, fileList = []) {
     const fullPath = path.join(dir, file);
     const stat = fs.statSync(fullPath);
     if (stat.isDirectory()) {
-      if (!['node_modules', '.git', 'scripts', 'docs', 'css', 'js', 'data'].includes(file)) {
+      if (!['node_modules', '.git', 'scripts', 'docs', 'css', 'js', 'data', 'dist', 'src', '.astro'].includes(file)) {
         scanHtmlFiles(fullPath, fileList);
       }
     } else if (file.endsWith('.html')) {

@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/sync-dist-to-root.js && node scripts/validate-dist.js",
+    "build": "astro build && node scripts/sync-dist-to-root.js && node scripts/check-links.js && node scripts/validate-content.js",
     "preview": "astro preview",
-    "test": "node scripts/validate-dist.js",
+    "test": "node scripts/check-links.js && node scripts/validate-content.js",
     "indexnow": "node scripts/indexnow.js"
   },
   "keywords": [
